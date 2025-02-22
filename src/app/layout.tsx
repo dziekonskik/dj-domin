@@ -20,7 +20,7 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} ${apfelGrotezk.variable} font-poppins antialiased`}
       >
-        <header>
+        <header className="sm:grid justify-end max-w-7xl container m-auto">
           <DesktopNav />
           <MobileNav />
         </header>
