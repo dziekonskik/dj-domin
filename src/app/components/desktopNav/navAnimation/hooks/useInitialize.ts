@@ -16,6 +16,7 @@ export const useInitialize = ({ controls, navLinkRef }: Props) => {
     if (!initRef?.height) return;
     controls.set({
       x: initRef.x - window.innerWidth + initRef.width,
+      y: initRef.y,
     });
 
     // Opóźnienie startu animacji, aby pozycja się zaktualizowała
