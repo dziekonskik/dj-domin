@@ -1,33 +1,35 @@
 import { useRef, useEffect, useCallback, MouseEvent } from "react";
-import { AnimationRef, NavLinkRef } from "../../types";
 import { Route } from "@/consts/routes";
+import { useRefsContext } from "../../context";
 
 type Props = {
   href: Route;
-  animationRef: AnimationRef;
-  navLinkRef: NavLinkRef;
 };
 
-export const useAnimationActions = ({ href, animationRef, navLinkRef }: Props) => {
+export const useAnimationActions = ({ href }: Props) => {
   const liRef = useRef<HTMLLIElement>(null);
-  const mousePos = useRef({ x: 0, y: 0 });
+  const mousePosition = useRef({ x: 0, y: 0 });
+  const { animationRef, motionDivPosition, navLinksRef } = useRefsContext();
 
   const onClick = useCallback(() => {
-    const coords = liRef.current?.getBoundingClientRect();
-    animationRef.current?.runMoveAnimation({ x: mousePos.current.x, y: mousePos.current.y }, coords);
-  }, [animationRef]);
+    animationRef.current?.runMoveAnimation({ x: mousePosition.current.x, y: mousePosition.current.y });
+    motionDivPosition.current = mousePosition.current; // store mouse pos to be reused on click to prevent situation where user hovers over link without clicking and then resize browser window
+  }, [animationRef, motionDivPosition, mousePosition]);
 
-  const onMouseMove = useCallback(({ pageX, pageY }: MouseEvent<HTMLLIElement>) => {
-    mousePos.current.x = pageX;
-    mousePos.current.y = pageY;
-  }, []);
+  const onMouseMove = useCallback(
+    ({ pageX, pageY }: MouseEvent<HTMLLIElement>) => {
+      mousePosition.current.x = pageX;
+      mousePosition.current.y = pageY;
+    },
+    [mousePosition]
+  );
 
   useEffect(() => {
-    if (liRef.current && navLinkRef) {
+    if (liRef.current && navLinksRef) {
       const getBoundingRect = () => liRef.current?.getBoundingClientRect();
-      navLinkRef.current[href] = { getBoundingRect };
+      navLinksRef.current[href] = { getBoundingRect };
     }
-  }, [href, liRef, navLinkRef]);
+  }, [href, liRef, navLinksRef]);
 
   return { liRef, onClick, onMouseMove };
 };

@@ -1,25 +1,26 @@
 import { useEffect } from "react";
 import { AnimationControls } from "motion/react";
-import { usePathname } from "next/navigation";
-import { NavLinkRef } from "../../types";
+import { useRefsContext } from "../../context";
+import { orZero } from "@/utils/orZero";
 
 type Props = {
   controls: AnimationControls;
-  navLinkRef: NavLinkRef;
+  getMotionDivRect: () => DOMRect | undefined;
 };
 
-export const useInitialize = ({ controls, navLinkRef }: Props) => {
-  const pathname = usePathname();
+export const useInitialize = ({ controls, getMotionDivRect }: Props) => {
+  const { getCurrentLinkRect } = useRefsContext();
 
   useEffect(() => {
-    const initRef = navLinkRef?.current[pathname]?.getBoundingRect();
-    if (!initRef?.height) return;
+    const currentLinkRect = getCurrentLinkRect();
+    const motionDivRect = getMotionDivRect();
+
+    if (!currentLinkRect?.height) return;
     controls.set({
-      x: initRef.x - window.innerWidth + initRef.width,
-      y: initRef.y,
+      x: currentLinkRect.x,
+      y: currentLinkRect.y + orZero(motionDivRect?.height) / 2,
     });
 
-    // Opóźnienie startu animacji, aby pozycja się zaktualizowała
     requestAnimationFrame(() => {
       controls.start({
         opacity: [0, 1],
@@ -30,5 +31,5 @@ export const useInitialize = ({ controls, navLinkRef }: Props) => {
         },
       });
     });
-  }, [navLinkRef]);
+  }, [controls, getMotionDivRect]);
 };

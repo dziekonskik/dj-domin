@@ -5,8 +5,12 @@ export type GetBoundingRect = {
 };
 
 export type ImperativeAnimation = {
-  runMoveAnimation: (coords: { x: number; y: number }, element?: DOMRect) => void;
+  runMoveAnimation: (coords: { x: number; y: number }) => void;
 };
 
-export type NavLinkRef = RefObject<Record<string, GetBoundingRect>>;
+export type NavLinksRef = RefObject<Record<string, GetBoundingRect>>;
 export type AnimationRef = RefObject<ImperativeAnimation | null>;
+export type MotionDivPosition = RefObject<{
+  x: number;
+  y: number;
+}>;

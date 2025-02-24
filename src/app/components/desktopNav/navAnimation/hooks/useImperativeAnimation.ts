@@ -1,18 +1,22 @@
 import { AnimationControls } from "motion/react";
-import { AnimationRef } from "../../types";
 import { useImperativeHandle } from "react";
+import { orZero } from "@/utils/orZero";
+import { useRefsContext } from "../../context";
 
 type Props = {
   controls: AnimationControls;
-  animationRef: AnimationRef;
+  getMotionDivRect: () => DOMRect | undefined;
 };
 
-export const useImperativeAnimation = ({ animationRef, controls }: Props) => {
+export const useImperativeAnimation = ({ controls, getMotionDivRect }: Props) => {
+  const { animationRef } = useRefsContext();
+
   useImperativeHandle(animationRef, () => ({
-    runMoveAnimation: (coords, element) => {
+    runMoveAnimation: (coords) => {
+      const motionDivRect = getMotionDivRect();
       controls.start({
-        x: coords.x + (element?.width ?? 0) / 2 - window.innerWidth,
-        y: coords.y - (element?.height ?? 0) / 2,
+        x: coords.x - orZero(motionDivRect?.width) / 2,
+        y: coords.y - orZero(motionDivRect?.height) / 2,
       });
     },
   }));

@@ -2,18 +2,15 @@
 import { ReactNode } from "react";
 import Link from "next/link";
 import type { Route } from "@/consts/routes";
-import type { AnimationRef, NavLinkRef } from "../types";
 import { useAnimationActions } from "./hooks/useAnimationActions";
 
 type Props = {
   children: ReactNode;
   href: Route;
-  navLinkRef: NavLinkRef;
-  animationRef: AnimationRef;
 };
 
-export const NavLink = ({ href, children, navLinkRef, animationRef }: Props) => {
-  const { liRef, onClick, onMouseMove } = useAnimationActions({ href, animationRef, navLinkRef });
+export const NavLink = ({ href, children }: Props) => {
+  const { liRef, onClick, onMouseMove } = useAnimationActions({ href });
 
   return (
     <li ref={liRef} {...{ onClick, onMouseMove }} className="uppercase w-20 h-12 grid">
