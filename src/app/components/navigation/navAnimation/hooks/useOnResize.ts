@@ -20,7 +20,7 @@ export const useOnResize = ({ controls, getMotionDivRect }: Props) => {
     const hanldeResize = () => {
       const currentLinkRect = getCurrentLinkRect();
       const beforeNavLinkClick = !motionDivPosition.current.x;
-
+      console.log("resized");
       controls.set({
         x: beforeNavLinkClick
           ? orZero(currentLinkRect?.left)

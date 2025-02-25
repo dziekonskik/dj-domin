@@ -5,11 +5,11 @@ import { routes } from "@/consts/routes";
 import { NavLink } from "./navLink";
 import { RefsProfider } from "./context";
 
-export const DesktopNav = () => {
+export const Navigation = () => {
   return (
     <RefsProfider>
-      <nav className="mx-auto mt-24 w-min hidden sm:flex">
-        <ul className="flex justify-end gap-20">
+      <nav className="mx-auto mt-24 flex">
+        <ul className="flex flex-col sm:flex-row justify-center sm:justify-end gap-20">
           {routes.map(({ href, name }) => (
             <NavLink key={href} {...{ href }}>
               {name}
