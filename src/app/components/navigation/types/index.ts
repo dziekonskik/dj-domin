@@ -10,7 +10,7 @@ export type ImperativeAnimation = {
 
 export type NavLinksRef = RefObject<Record<string, GetBoundingRect>>;
 export type AnimationRef = RefObject<ImperativeAnimation | null>;
-export type MotionDivPosition = RefObject<{
+export type MotionDivPosition = {
   x: number;
   y: number;
-}>;
+};

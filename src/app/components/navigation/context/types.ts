@@ -5,4 +5,5 @@ export type RefsContextValues = {
   navLinksRef: NavLinksRef;
   animationRef: AnimationRef;
   getCurrentLinkRect: () => DOMRect | undefined;
+  setNewMotionDivPosition: (values: MotionDivPosition) => void;
 };

@@ -12,7 +12,7 @@ type Props = {
 
 export const NavLinkUi = ({ href, children, ref, onClick, onMouseMove }: Props) => {
   return (
-    <li {...{ ref, onClick, onMouseMove }} className="uppercase w-20 h-12 grid">
+    <li {...{ ref, onClick, onMouseMove }} className="uppercase grid text-xl sm:text-lg">
       <Link {...{ href }} className="p-2 pr-4 grid place-content-center">
         {children}
       </Link>

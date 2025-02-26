@@ -9,12 +9,12 @@ type Props = {
 export const useAnimationActions = ({ href }: Props) => {
   const liRef = useRef<HTMLLIElement>(null);
   const mousePosition = useRef({ x: 0, y: 0 });
-  const { animationRef, motionDivPosition, navLinksRef } = useRefsContext();
+  const { animationRef, setNewMotionDivPosition, navLinksRef } = useRefsContext();
 
   const onClick = useCallback(() => {
     animationRef.current?.runMoveAnimation({ x: mousePosition.current.x, y: mousePosition.current.y });
-    motionDivPosition.current = mousePosition.current; // store mouse pos to be reused on click to prevent situation where user hovers over link without clicking and then resize browser window
-  }, [animationRef, motionDivPosition, mousePosition]);
+    setNewMotionDivPosition({ x: mousePosition.current.x, y: mousePosition.current.y }); // store mouse pos to be reused on click to prevent situation where user hovers over link without clicking and then resize browser window
+  }, [animationRef, setNewMotionDivPosition, mousePosition]);
 
   const onMouseMove = useCallback(
     ({ pageX, pageY }: MouseEvent<HTMLLIElement>) => {

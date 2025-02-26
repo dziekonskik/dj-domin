@@ -14,7 +14,6 @@ export const useInitialize = ({ controls, getMotionDivRect }: Props) => {
   useEffect(() => {
     const currentLinkRect = getCurrentLinkRect();
     const motionDivRect = getMotionDivRect();
-    console.log("init");
 
     if (!currentLinkRect?.height) return;
     controls.set({
