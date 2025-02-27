@@ -1,25 +1,28 @@
 "use client";
 
+import { motion } from "motion/react";
 import { NavAnimation } from "./navAnimation";
 import { routes } from "@/consts/routes";
 import { NavLink } from "./navLink";
 import { RefsProfider } from "./context";
-import { HamburgerButton } from "./hamburgerButton";
 
-export const Navigation = () => {
+type Props = {
+  isMenuOpen: boolean;
+};
+
+export const Navigation = ({ isMenuOpen }: Props) => {
   return (
     <RefsProfider>
-      <nav className="mx-auto mt-24 flex justify-center items-center">
-        <HamburgerButton />
+      <motion.nav className="mx-auto mt-52 sm:mt-24 flex justify-center items-center">
         <ul className="flex flex-col sm:flex-row justify-center sm:justify-end gap-20">
           {routes.map(({ href, name }) => (
             <NavLink key={href} {...{ href }}>
               {name}
             </NavLink>
           ))}
-          <NavAnimation />
         </ul>
-      </nav>
+        <NavAnimation />
+      </motion.nav>
     </RefsProfider>
   );
 };

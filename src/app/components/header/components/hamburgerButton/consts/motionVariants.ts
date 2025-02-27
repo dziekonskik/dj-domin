@@ -1,6 +1,6 @@
 import { Variants } from "motion/react";
 
-export const VARIANTS: Record<string, Variants> = {
+export const VARIANTS = {
   TOP: {
     closed: { translateY: 0, rotate: 0, transition: { rotate: { delay: 0 }, translateY: { delay: 0.1 } } },
     open: { translateY: 5, rotate: 45, transition: { translateY: { delay: 0 }, rotate: { delay: 0.1 } } },
@@ -13,4 +13,4 @@ export const VARIANTS: Record<string, Variants> = {
     closed: { translateY: 0, rotate: 0, transition: { rotate: { delay: 0 }, translateY: { delay: 0.1 } } },
     open: { translateY: -5, rotate: -45, transition: { translateY: { delay: 0 }, rotate: { delay: 0.1 } } },
   },
-};
+} as const satisfies Record<string, Variants>;
