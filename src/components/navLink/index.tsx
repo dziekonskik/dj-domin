@@ -10,7 +10,7 @@ type Props = {
   onMouseMove?: (event: MouseEvent<HTMLLIElement>) => void;
 };
 
-export const NavLinkUi = ({ href, children, ref, onClick, onMouseMove }: Props) => {
+export const NavLink = ({ href, children, ref, onClick, onMouseMove }: Props) => {
   return (
     <li {...{ ref, onClick, onMouseMove }} className="uppercase grid text-xl sm:text-lg">
       <Link {...{ href }} className="p-2 pr-4 grid place-content-center">
