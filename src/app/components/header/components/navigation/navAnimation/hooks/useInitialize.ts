@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { frame, cancelFrame } from "motion";
 import { AnimationControls } from "motion/react";
 import { useRefsContext } from "../../context";
 import { orZero } from "@/utils/orZero";
@@ -21,15 +22,19 @@ export const useInitialize = ({ controls, getMotionDivRect }: Props) => {
       y: currentLinkRect.y + orZero(motionDivRect?.height) / 2,
     });
 
-    requestAnimationFrame(() => {
+    const initialize = () => {
       controls.start({
         opacity: [0, 1],
         scale: [0, 1],
         transition: {
-          duration: 0.4,
           scale: { type: "spring", duration: 0.75, bounce: 0.6 },
         },
       });
-    });
+    };
+
+    frame.render(initialize);
+    return () => {
+      cancelFrame(initialize);
+    };
   }, [controls, getMotionDivRect]);
 };

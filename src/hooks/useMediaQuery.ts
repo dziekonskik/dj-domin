@@ -1,11 +1,10 @@
-import { useCallback, useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
 const IS_SERVER = typeof window === "undefined";
-const DEFAULT_VALUE = false;
 
 const getMatches = (query: string): boolean => {
   if (IS_SERVER) {
-    return DEFAULT_VALUE;
+    return false;
   }
   return window.matchMedia(query).matches;
 };
@@ -13,10 +12,9 @@ const getMatches = (query: string): boolean => {
 export function useMediaQuery(query: string): boolean {
   const [matches, setMatches] = useState(getMatches(query));
 
-  const handleChange = useCallback(() => setMatches(getMatches(query)), [query]);
-
   useLayoutEffect(() => {
     const matchMedia = window.matchMedia(query);
+    const handleChange = () => setMatches(getMatches(query));
     handleChange();
 
     if (matchMedia.addListener) {
@@ -32,7 +30,7 @@ export function useMediaQuery(query: string): boolean {
         matchMedia.removeEventListener("change", handleChange);
       }
     };
-  }, [query, handleChange]);
+  }, [query]);
 
   return matches;
 }

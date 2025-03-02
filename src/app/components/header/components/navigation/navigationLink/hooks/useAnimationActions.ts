@@ -4,9 +4,10 @@ import { useRefsContext } from "../../context";
 
 type Props = {
   href: Route;
+  closeMobileMenu: () => void;
 };
 
-export const useAnimationActions = ({ href }: Props) => {
+export const useAnimationActions = ({ href, closeMobileMenu }: Props) => {
   const liRef = useRef<HTMLLIElement>(null);
   const mousePosition = useRef({ x: 0, y: 0 });
   const { animationRef, setNewMotionDivPosition, navLinksRef } = useRefsContext();
@@ -14,7 +15,8 @@ export const useAnimationActions = ({ href }: Props) => {
   const onClick = useCallback(() => {
     animationRef.current?.runMoveAnimation({ x: mousePosition.current.x, y: mousePosition.current.y });
     setNewMotionDivPosition({ x: mousePosition.current.x, y: mousePosition.current.y }); // store mouse pos to be reused on click to prevent situation where user hovers over link without clicking and then resize browser window
-  }, [animationRef, setNewMotionDivPosition, mousePosition]);
+    closeMobileMenu();
+  }, [animationRef, setNewMotionDivPosition, mousePosition, closeMobileMenu]);
 
   const onMouseMove = useCallback(
     ({ pageX, pageY }: MouseEvent<HTMLLIElement>) => {
