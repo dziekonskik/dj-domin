@@ -1,6 +1,7 @@
-import { Variant } from "motion/react";
+import { Variants } from "motion/react";
 
-export const VARIANTS = {
-  mobileInit: { opacity: 0, pointerEvents: "none" },
-  desktopInit: { opacity: 1 },
-} as const satisfies Record<string, Variant>;
+export const LIST_VARIANTS = {
+  MOBILE_OPEN: { transition: { staggerChildren: 0.07, delayChildren: 0.12 } },
+  MOBILE_CLOSED: { transition: { staggerChildren: 0 } },
+  DESKTOP: { transition: { staggerChildren: 0 } },
+} as const satisfies Variants;
