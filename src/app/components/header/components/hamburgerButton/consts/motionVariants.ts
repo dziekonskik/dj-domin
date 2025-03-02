@@ -1,6 +1,6 @@
 import { Variants } from "motion/react";
 
-export const VARIANTS = {
+export const RECT_VARIANTS = {
   TOP: {
     closed: { translateY: 0, rotate: 0, transition: { rotate: { delay: 0 }, translateY: { delay: 0.1 } } },
     open: { translateY: 5, rotate: 45, transition: { translateY: { delay: 0 }, rotate: { delay: 0.1 } } },
