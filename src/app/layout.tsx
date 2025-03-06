@@ -3,6 +3,7 @@ import { Header } from "./components/header";
 import { Footer } from "./components/footer";
 import { apfelGrotezk, poppins } from "./styles/fonts";
 import "./styles/globals.css";
+import { UIStateProvider } from "./context";
 
 export const metadata: Metadata = {
   title: "Dj Domin",
@@ -17,9 +18,11 @@ export default function RootLayout({
   return (
     <html lang="pl">
       <body className={`${poppins.variable} ${apfelGrotezk.variable} font-poppins antialiased`}>
-        <Header />
-        {children}
-        <Footer />
+        <UIStateProvider>
+          <Header />
+          {children}
+          <Footer />
+        </UIStateProvider>
       </body>
     </html>
   );
