@@ -1,5 +1,6 @@
 import { useRef, useEffect, useCallback, MouseEvent } from "react";
 import { Route } from "@/consts/routes";
+import { useBodyScrollLock } from "@/hooks";
 import { useRefsContext } from "../../context";
 
 type Props = {
@@ -11,12 +12,14 @@ export const useAnimationActions = ({ href, closeMobileMenu }: Props) => {
   const liRef = useRef<HTMLLIElement>(null);
   const mousePosition = useRef({ x: 0, y: 0 });
   const { animationRef, setNewMotionDivPosition, navLinksRef } = useRefsContext();
+  const { unlockScroll } = useBodyScrollLock();
 
   const onClick = useCallback(() => {
     animationRef.current?.runMoveAnimation({ x: mousePosition.current.x, y: mousePosition.current.y });
     setNewMotionDivPosition({ x: mousePosition.current.x, y: mousePosition.current.y }); // store mouse pos to be reused on click to prevent situation where user hovers over link without clicking and then resize browser window
     closeMobileMenu();
-  }, [animationRef, setNewMotionDivPosition, mousePosition, closeMobileMenu]);
+    unlockScroll();
+  }, [animationRef, setNewMotionDivPosition, mousePosition, closeMobileMenu, unlockScroll]);
 
   const onMouseMove = useCallback(
     ({ pageX, pageY }: MouseEvent<HTMLLIElement>) => {

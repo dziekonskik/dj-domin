@@ -8,8 +8,10 @@ export const useMenuOpen = () => {
   const toggleMenu = useCallback(
     () =>
       setIsMenuOpen((prev) => {
-        if (prev === false) lockScroll();
-        if (prev === true) unlockScroll();
+        const menuOpen = prev === false;
+        const menuClosed = prev === true;
+        if (menuOpen) lockScroll();
+        if (menuClosed) unlockScroll();
         return !prev;
       }),
     [lockScroll, unlockScroll]
