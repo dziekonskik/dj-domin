@@ -8,7 +8,7 @@ type Props = {
 };
 
 export const HamburgerButton = ({ isMenuOpen, toggleMenu }: Props) => (
-  <div className="fixed top-10 right-5 p-1 grid place-content-center sm:hidden z-10">
+  <div className="fixed top-10 right-5 p-1 grid place-content-center sm:hidden">
     <button className="w-10 h-10" onClick={toggleMenu}>
       <svg viewBox="0 0 24 24">
         <motion.rect

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { NavAnimation } from "./navAnimation";
 import { routes } from "@/consts/routes";
 import { NavigationLink } from "./navigationLink";
@@ -16,19 +16,21 @@ type Props = {
 };
 
 export const Navigation = ({ isMenuOpen, closeMobileMenu }: Props) => {
-  const isMobile = useMediaQuery(MEDIA_QUERY.IS_MOBILE);
+  const { scrollY } = useScroll();
   const { controls } = useListAnimationActions(isMenuOpen);
+  const isMobile = useMediaQuery(MEDIA_QUERY.IS_MOBILE);
   const isMobileMenuOpen = isMobile && isMenuOpen;
 
   return (
     <RefsProfider>
       <motion.div
-        className="absolute bg-white w-10 h-10 -z-10 rounded-full"
-        initial={{ top: 44, right: 24, scale: 0 }}
+        className="fixed top-10 right-5 bg-white w-10 h-10 -z-10 rounded-full"
+        initial={{ scale: 0 }}
         animate={{ scale: isMobileMenuOpen ? 50 : 0 }}
       />
       <nav
-        className={`mx-auto mt-52 sm:mt-10 flex justify-center items-center sm:visible sm:pointer-events-auto ${
+        style={{ marginTop: useTransform(scrollY, (value) => 200 + value).get() }}
+        className={`mx-auto sm:!mt-10 flex justify-center items-center sm:visible sm:pointer-events-auto ${
           isMobileMenuOpen ? "visible pointer-events-auto" : "invisible pointer-events-none"
         }`}
       >
