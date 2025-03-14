@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "howler": "^2.2.4",
     "motion": "^12.4.5",
     "next": "15.1.7",
     "ramda": "^0.30.1",
