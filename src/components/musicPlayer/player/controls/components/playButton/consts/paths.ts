@@ -6,7 +6,7 @@ export const PLAY_RIGHT = "M 7.5 7 V 17 C 8 18.5 12 16 18 12.5 C 18.5 12 18.5 12
 export const ANIMATE_CONFIG = {
   attributeName: "d",
   fill: "freeze",
-  dur: "0.3s",
+  dur: "0.2s",
   begin: "indefinite",
   calcMode: "spline",
   keyTimes: "0; 1",
