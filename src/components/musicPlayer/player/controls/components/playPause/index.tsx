@@ -9,7 +9,7 @@ type Props = {
   togglePlay: () => Promise<unknown>;
 };
 
-export const PlayButton = ({ isLoading, isPlaying, togglePlay }: Props) => {
+export const PlayPause = ({ isLoading, isPlaying, togglePlay }: Props) => {
   const [hasInteracted, setHasInteracted] = useState(false);
   const pathLeft = useRef<SVGAnimateElement>(null);
   const pathRight = useRef<SVGAnimateElement>(null);

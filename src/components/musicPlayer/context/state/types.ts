@@ -7,7 +7,7 @@ export type Track = {
 };
 
 export type State = {
-  playerState: "not_ready" | "ready" | "playing" | "paused" | "error";
+  playerState: "not_ready" | "loading" | "ready" | "playing" | "paused" | "error";
   tracks: Track[];
   currentIndex: number;
   currentId: number;
