@@ -1,6 +1,7 @@
 import { usePlayer } from "../../context";
-import { PlayButton } from "./components/playButton";
-import { NextSongIcon, VolumeIcon } from "./icons";
+import { Next } from "./components/next";
+import { PlayPause } from "./components/playPause";
+import { Volume } from "./components/volume";
 
 export const Controls = () => {
   const { playerState, togglePlay } = usePlayer();
@@ -8,10 +9,10 @@ export const Controls = () => {
   const isLoading = playerState === "loading";
 
   return (
-    <div className="w-1/2 mx-auto flex justify-around">
-      <VolumeIcon />
-      <PlayButton {...{ isLoading, isPlaying, togglePlay }} />
-      <NextSongIcon />
+    <div className="mx-auto flex justify-center md:gap-5 lg:gap-7 xl:gap-10">
+      <Volume />
+      <PlayPause {...{ isLoading, isPlaying, togglePlay }} />
+      <Next />
     </div>
   );
 };
