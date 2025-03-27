@@ -3,7 +3,7 @@ import { Next } from "./components/next";
 import { PlayPause } from "./components/playPause";
 import { Volume } from "./components/volume";
 
-export const Controls = () => {
+export const ControlPanel = () => {
   const { playerState, togglePlay } = usePlayer();
   const isPlaying = playerState === "playing";
   const isLoading = playerState === "loading";

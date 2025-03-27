@@ -1,12 +1,12 @@
 import { useRef, useSyncExternalStore } from "react";
 import { DragHandlers } from "motion/react";
 import { Howler } from "howler";
-import { getSnapsot, subscribe } from "../utils/externalStore";
+import { getSnapshot, subscribe } from "../utils/externalStoreVolume";
 
 const DEFAULT_VOLUME = "0.5";
 
 export const useVolume = () => {
-  const vol = parseFloat(useSyncExternalStore(subscribe, getSnapsot) ?? DEFAULT_VOLUME);
+  const vol = parseFloat(useSyncExternalStore(subscribe, getSnapshot) ?? DEFAULT_VOLUME);
   const trackRef = useRef<HTMLDivElement>(null);
   Howler.volume(vol);
 
