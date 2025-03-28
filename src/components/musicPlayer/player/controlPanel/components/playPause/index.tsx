@@ -1,39 +1,23 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { PATH_CONFIG } from "../../icons/consts/pathConfig";
 import { PAUSE_LEFT, PAUSE_RIGHT, PLAY_LEFT, PLAY_RIGHT, ANIMATE_CONFIG } from "./consts/paths";
+import { usePlayer } from "@/components/musicPlayer/context";
+import { useAnimateControls } from "./hooks/useAnimateControls";
 
-type Props = {
-  isLoading: boolean;
-  isPlaying: boolean;
-  togglePlay: () => Promise<unknown>;
-};
-
-export const PlayPause = ({ isLoading, isPlaying, togglePlay }: Props) => {
+export const PlayPause = () => {
   const [hasInteracted, setHasInteracted] = useState(false);
-  const pathLeft = useRef<SVGAnimateElement>(null);
-  const pathRight = useRef<SVGAnimateElement>(null);
-  const opacityAnim = useRef<SVGAnimateElement>(null);
-  const displacementRef = useRef<SVGAnimateElement>(null);
-  const rotateDisplacementRef = useRef<SVGAnimateElement>(null);
+  const { playerState, togglePlay } = usePlayer();
+  const isPlaying = playerState === "playing";
+  const isLoading = playerState === "loading";
+  const { displacementRef, opacityAnimRef, pathLeftRef, pathRightRef, rotateDisplacementRef } = useAnimateControls({
+    hasInteracted,
+  });
 
   const handleClick = async () => {
     await togglePlay();
     if (!hasInteracted) setHasInteracted(true);
   };
-
-  useEffect(() => {
-    if (!hasInteracted) return;
-    pathLeft.current?.beginElement();
-    pathRight.current?.beginElement();
-    opacityAnim.current?.beginElement();
-  }, [isPlaying, hasInteracted]);
-
-  useEffect(() => {
-    if (!isLoading) return;
-    displacementRef.current?.beginElement();
-    rotateDisplacementRef.current?.beginElement();
-  }, [isLoading]);
 
   return (
     <button className="w-14 aspect-square" id="button" onClick={handleClick}>
@@ -62,7 +46,7 @@ export const PlayPause = ({ isLoading, isPlaying, togglePlay }: Props) => {
         </circle>
         <path d={isPlaying ? PAUSE_LEFT : PLAY_LEFT} {...PATH_CONFIG} fill="white">
           <animate
-            ref={pathLeft}
+            ref={pathLeftRef}
             from={isPlaying ? PLAY_LEFT : PAUSE_LEFT}
             to={isPlaying ? PAUSE_LEFT : PLAY_LEFT}
             {...ANIMATE_CONFIG}
@@ -70,13 +54,13 @@ export const PlayPause = ({ isLoading, isPlaying, togglePlay }: Props) => {
         </path>
         <path d={isPlaying ? PAUSE_RIGHT : PLAY_RIGHT} {...PATH_CONFIG} fill="white" opacity={isPlaying ? 1 : 0}>
           <animate
-            ref={pathRight}
+            ref={pathRightRef}
             from={isPlaying ? PLAY_RIGHT : PAUSE_RIGHT}
             to={isPlaying ? PAUSE_RIGHT : PLAY_RIGHT}
             {...ANIMATE_CONFIG}
           />
           <animate
-            ref={opacityAnim}
+            ref={opacityAnimRef}
             from={isPlaying ? "0" : "1"}
             to={isPlaying ? "1" : "0"}
             {...ANIMATE_CONFIG}
