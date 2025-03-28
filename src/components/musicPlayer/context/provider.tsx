@@ -3,7 +3,7 @@ import { useBindedReducer } from "@type-hub/re-action";
 import { initState } from "./state/initialState";
 import { reducer } from "./state/reducer";
 import { actionCreators } from "./actions/actionCreators";
-import { ContextValues, Track } from "./state/types";
+import { ContextValues, Track } from "./types/state";
 import { usePlayerControls } from "./actions/usePlayerControls";
 
 const PlayerContext = createContext<ContextValues | null>(null);

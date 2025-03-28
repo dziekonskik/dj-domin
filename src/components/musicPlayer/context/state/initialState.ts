@@ -1,4 +1,4 @@
-import { State } from "./types";
+import { State } from "../types/state";
 
 export const initState = {
   playerState: "not_ready",

@@ -1,2 +1,2 @@
 export * from "./provider";
-export * from "./state/types";
+export * from "./types/state";
