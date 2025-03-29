@@ -10,6 +10,7 @@ export const playPause: ControlsHandler = async (soundRef, state, actions) => {
       onload: actions.setReady,
       onplay: actions.setPlaying,
       onpause: actions.setPaused,
+      onend: actions.setReady,
     });
 
     return new Promise((resolve) => {
