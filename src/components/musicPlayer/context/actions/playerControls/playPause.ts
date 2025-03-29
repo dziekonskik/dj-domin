@@ -1,8 +1,6 @@
-import { RefObject } from "react";
-import { Howl } from "howler";
-import { ActionCreators, State } from "../../state/types";
+import { ControlsHandler } from "../../types/controls";
 
-export async function playPause(soundRef: RefObject<Howl | null>, state: State, actions: ActionCreators) {
+export const playPause: ControlsHandler = async (soundRef, state, actions) => {
   if (!soundRef.current) {
     actions.setLoading();
     soundRef.current = new Howl({
@@ -15,20 +13,20 @@ export async function playPause(soundRef: RefObject<Howl | null>, state: State, 
     });
 
     return new Promise((resolve) => {
-      soundRef.current!.once("play", resolve);
+      soundRef.current!.once("play", () => resolve());
       soundRef.current!.play();
     });
   }
 
   if (soundRef.current.playing()) {
     return new Promise((resolve) => {
-      soundRef.current!.once("pause", resolve);
+      soundRef.current!.once("pause", () => resolve());
       soundRef.current!.pause();
     });
   } else {
     return new Promise((resolve) => {
-      soundRef.current!.once("play", resolve);
+      soundRef.current!.once("play", () => resolve());
       soundRef.current!.play();
     });
   }
-}
+};

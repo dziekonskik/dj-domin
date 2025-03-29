@@ -1,18 +1,11 @@
 import { setupActionsCreators } from "@type-hub/re-action";
 
 export const actionCreators = setupActionsCreators({
-  setReady: (arg: number) => {
-    console.log({ loaded: arg });
+  setReady: () => null,
+  setError: (_, error) => {
+    throw new Error(`Player error: ${error}`);
   },
-  setError: (id, error) => {
-    console.log({ id, error });
-  },
-  setPlaying: (id) => {
-    console.log({ playing: true, id });
-
-    return id;
-  },
-  setPaused: (id) => {
-    console.log({ paused: true, id });
-  },
+  setPlaying: (id) => id,
+  setPaused: () => null,
+  setLoading: () => null,
 });

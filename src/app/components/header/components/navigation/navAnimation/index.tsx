@@ -21,7 +21,7 @@ export const NavAnimation = () => {
       initial={{ opacity: 0, scale: 0, left: 0, top: 0 }}
       animate={controls}
       style={{ marginTop: useTransform(scrollY, (value) => value).get() }}
-      className="bg-green -z-10 h-10 w-10 rounded-full absolute"
+      className="bg-primary -z-10 h-10 w-10 rounded-full absolute sm:!mt-0"
     />
   );
 };

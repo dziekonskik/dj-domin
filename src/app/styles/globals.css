@@ -8,9 +8,9 @@
   --color-white: #fff;
   --color-black: #000;
   --color-grey: #d9d9d9;
-  --color-green: #aef0e3;
-  --color-red: #ff7574;
-  --color-yellow: #ffdca0;
+  --color-primary: #aef0e3;
+  --color-lightgreen: #d7f8f1;
+  --color-secondary: #ff7574;
 
   --ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
   --ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
