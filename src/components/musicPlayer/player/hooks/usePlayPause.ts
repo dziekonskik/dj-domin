@@ -1,14 +1,16 @@
 import { usePlayer } from "@/components/musicPlayer/context";
+import { COLOR } from "@/consts/colors";
 import { useEffect, useRef } from "react";
 
 type Props = {
   hasInteracted: boolean;
 };
 
-export const useAnimateControls = ({ hasInteracted }: Props) => {
+export const usePlayPause = ({ hasInteracted }: Props) => {
   const { playerState } = usePlayer();
   const isPlaying = playerState === "playing";
   const isLoading = playerState === "loading";
+  const circleRef = useRef<SVGCircleElement>(null);
   const pathLeftRef = useRef<SVGAnimateElement>(null);
   const pathRightRef = useRef<SVGAnimateElement>(null);
   const opacityAnimRef = useRef<SVGAnimateElement>(null);
@@ -28,5 +30,14 @@ export const useAnimateControls = ({ hasInteracted }: Props) => {
     rotateDisplacementRef.current?.beginElement();
   }, [isLoading]);
 
-  return { pathLeftRef, pathRightRef, opacityAnimRef, displacementRef, rotateDisplacementRef };
+  useEffect(() => {
+    const colorAnimation = circleRef.current?.animate(
+      { fill: isPlaying ? COLOR.PRIMARY : COLOR.SECONDARY },
+      { duration: 200, fill: "forwards" }
+    );
+
+    return () => colorAnimation?.finish();
+  }, [isPlaying]);
+
+  return { circleRef, pathLeftRef, pathRightRef, opacityAnimRef, displacementRef, rotateDisplacementRef };
 };

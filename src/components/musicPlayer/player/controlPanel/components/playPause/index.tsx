@@ -1,18 +1,19 @@
 "use client";
 import { useState } from "react";
-import { PATH_CONFIG } from "../../icons/consts/pathConfig";
 import { PAUSE_LEFT, PAUSE_RIGHT, PLAY_LEFT, PLAY_RIGHT, ANIMATE_CONFIG } from "./consts/paths";
 import { usePlayer } from "@/components/musicPlayer/context";
-import { useAnimateControls } from "./hooks/useAnimateControls";
+import { PATH_CONFIG } from "../../icons/consts/pathConfig";
+import { usePlayPause } from "../../../hooks/usePlayPause";
+import { COLOR } from "@/consts/colors";
 
 export const PlayPause = () => {
   const [hasInteracted, setHasInteracted] = useState(false);
   const { playerState, togglePlay } = usePlayer();
   const isPlaying = playerState === "playing";
   const isLoading = playerState === "loading";
-  const { displacementRef, opacityAnimRef, pathLeftRef, pathRightRef, rotateDisplacementRef } = useAnimateControls({
-    hasInteracted,
-  });
+  const { circleRef, displacementRef, opacityAnimRef, pathLeftRef, pathRightRef, rotateDisplacementRef } = usePlayPause(
+    { hasInteracted }
+  );
 
   const handleClick = async () => {
     await togglePlay();
@@ -34,7 +35,7 @@ export const PlayPause = () => {
             />
           </feDisplacementMap>
         </filter>
-        <circle cx="12" cy="12" r="12" fill={isPlaying ? "#aef0e3" : "#ff7574"} filter="url(#loading)">
+        <circle ref={circleRef} cx="12" cy="12" r="12" filter="url(#loading)" fill={COLOR.SECONDARY}>
           <animateTransform
             ref={rotateDisplacementRef}
             attributeName="transform"
