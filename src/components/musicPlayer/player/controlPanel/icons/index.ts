@@ -1,2 +1,2 @@
-export * from "./nextSong";
+export * from "./forward";
 export * from "./volume";

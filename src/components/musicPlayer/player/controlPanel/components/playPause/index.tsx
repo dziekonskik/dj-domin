@@ -30,8 +30,8 @@ export const PlayPause = () => {
               ref={displacementRef}
               {...ANIMATE_CONFIG}
               attributeName="scale"
-              from={isLoading ? 0 : 10}
-              to={isLoading ? 10 : 0}
+              from={isLoading ? 0 : 3}
+              to={isLoading ? 3 : 0}
             />
           </feDisplacementMap>
         </filter>
@@ -41,8 +41,8 @@ export const PlayPause = () => {
             attributeName="transform"
             type="rotate"
             from="0 12 12"
-            to="360 12 12"
-            dur="5s"
+            to="10800 12 12"
+            dur="100s"
           />
         </circle>
         <path d={isPlaying ? PAUSE_LEFT : PLAY_LEFT} {...PATH_CONFIG} fill="white">
