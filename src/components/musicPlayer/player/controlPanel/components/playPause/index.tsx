@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { PAUSE_LEFT, PAUSE_RIGHT, PLAY_LEFT, PLAY_RIGHT, ANIMATE_CONFIG } from "./consts/paths";
 import { usePlayer } from "@/components/musicPlayer/context";
-import { PATH_CONFIG } from "../../icons/consts/pathConfig";
+import { PATH_CONFIG } from "../../../consts/pathConfig";
 import { usePlayPause } from "../../../hooks/usePlayPause";
 import { COLOR } from "@/consts/colors";
 

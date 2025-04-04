@@ -1,4 +1,4 @@
-import { PATH_CONFIG } from "./consts/pathConfig";
+import { PATH_CONFIG } from "../../consts/pathConfig";
 
 export const ForwardIcon = () => {
   return (
