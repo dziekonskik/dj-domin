@@ -1,14 +1,13 @@
 import { useRef, useSyncExternalStore } from "react";
 import { DragHandlers } from "motion/react";
 import { Howler } from "howler";
-import { getSnapshot, subscribe } from "../utils/externalStoreVolume";
-
-const DEFAULT_VOLUME = "0.5";
+import { DEFAULT_VOLUME } from "../consts";
+import { getSnapshot, getServerSnapshot, setVolume, subscribe } from "../utils/externalStoreVolume";
 
 export const useVolume = () => {
-  const vol = parseFloat(useSyncExternalStore(subscribe, getSnapshot) ?? DEFAULT_VOLUME);
+  const volume = parseFloat(useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot) ?? DEFAULT_VOLUME);
   const trackRef = useRef<HTMLDivElement>(null);
-  Howler.volume(vol);
+  Howler.volume(volume);
 
   const handleDrag: DragHandlers["onDrag"] = (_, { point }) => {
     const rect = trackRef.current?.getBoundingClientRect();
@@ -22,8 +21,8 @@ export const useVolume = () => {
     const relativeCurrentPos = (current - start) / inputRange;
     const newVolume = Math.round(relativeCurrentPos * 10) / 10;
     Howler.volume(newVolume);
-    localStorage.setItem("d-volume", newVolume.toString());
+    setVolume(newVolume);
   };
 
-  return { trackRef, vol, handleDrag };
+  return { trackRef, volume, handleDrag };
 };

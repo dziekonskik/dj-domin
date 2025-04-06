@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { VolumeButton } from "./components/volumeButton";
 import dynamic from "next/dynamic";
 import { usePlayer } from "@/components/musicPlayer/context";
-import { useVolume } from "../../../hooks/useVolume";
+import { useVolume } from "./hooks/useVolume";
 
 const SliderTrack = dynamic(() => import("./components/sliderTrack").then((m) => m.SliderTrack), { ssr: false });
 

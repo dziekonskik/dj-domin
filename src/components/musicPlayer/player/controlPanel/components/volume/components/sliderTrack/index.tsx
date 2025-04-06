@@ -1,16 +1,15 @@
 import { motion } from "motion/react";
-import { useVolume } from "../../../../../hooks/useVolume";
+import { useVolume } from "../../hooks/useVolume";
+import { BALL_SIZE } from "../../consts";
+import { getInitialVolumePos } from "../../utils/getinitialVolumePos";
 
 type Props = {
   isOpen: boolean;
 };
 
-const TRACK_LENGTH = 80;
-const BALL_SIZE = 12;
-
 export const SliderTrack = ({ isOpen }: Props) => {
-  const { handleDrag, trackRef, vol } = useVolume();
-  const initialX = TRACK_LENGTH * vol;
+  const { handleDrag, trackRef, volume } = useVolume();
+  const initialX = getInitialVolumePos(volume);
 
   return (
     <div className="absolute w-20 -translate-x-20">
@@ -21,8 +20,8 @@ export const SliderTrack = ({ isOpen }: Props) => {
         animate={{ scaleX: isOpen ? 1 : 0 }}
       >
         <motion.div
-          className="bg-red aspect-square rounded-full -translate-y-1/2 absolute"
-          initial={{ left: initialX, width: BALL_SIZE }}
+          className="bg-white aspect-square rounded-full -translate-y-1/2 absolute origin-left"
+          initial={{ x: initialX, width: BALL_SIZE }}
           whileTap={{ scale: 1.3 }}
           drag="x"
           dragConstraints={trackRef}
