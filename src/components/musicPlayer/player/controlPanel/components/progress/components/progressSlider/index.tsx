@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { motion } from "motion/react";
-import { useProgressSlider } from "@/components/musicPlayer/player/hooks/useProgressSlider";
+import { useProgressSlider } from "../../hooks/useProgressSlider";
 
 type Props = {
   setProgress: (seconds: number) => void;

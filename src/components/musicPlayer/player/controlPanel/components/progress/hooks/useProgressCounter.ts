@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { useAnimationFrame } from "framer-motion";
 import { usePlayer } from "@/components/musicPlayer/context";
 
-export const useProgressControl = () => {
+export const useProgressCounter = () => {
   const [timeElapsed, setTimeElapsed] = useState(0);
   const { playerState, getTrackSeconds, getDuration, setTrackSeconds } = usePlayer();
 

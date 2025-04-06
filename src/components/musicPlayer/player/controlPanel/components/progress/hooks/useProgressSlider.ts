@@ -1,7 +1,7 @@
 import { useRef, useEffect, useCallback } from "react";
 import { PanInfo, useAnimationFrame, useMotionValue } from "motion/react";
 import { COLOR } from "@/consts/colors";
-import { usePlayer } from "../../context";
+import { usePlayer } from "@/components/musicPlayer/context";
 
 type Props = {
   setProgress: (seconds: number) => void;

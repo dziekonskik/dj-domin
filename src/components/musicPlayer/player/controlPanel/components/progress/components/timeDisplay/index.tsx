@@ -1,5 +1,5 @@
 import { usePlayer } from "@/components/musicPlayer/context";
-import { durationFromSec } from "@/components/musicPlayer/player/utils/calculateDurationFromSec";
+import { durationFromSec } from "../../utils/calculateDurationFromSec";
 
 type Props = {
   timeElapsed: number;

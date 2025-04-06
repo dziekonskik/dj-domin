@@ -1,9 +1,9 @@
-import { useProgressControl } from "../../../hooks/useProgressControl";
+import { useProgressCounter } from "./hooks/useProgressCounter";
 import { ProgressSlider } from "./components/progressSlider";
 import { TimeDisplay } from "./components/timeDisplay";
 
 export const ProgressControl = () => {
-  const { setProgress, timeElapsed } = useProgressControl();
+  const { setProgress, timeElapsed } = useProgressCounter();
 
   return (
     <div>
