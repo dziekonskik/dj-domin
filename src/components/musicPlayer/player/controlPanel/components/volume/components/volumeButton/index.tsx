@@ -4,13 +4,14 @@ import { memo } from "react";
 import { motion } from "motion/react";
 import { PATH_CONFIG } from "../../../../../consts/pathConfig";
 import { useVolumeButtonAnimation } from "../../hooks/useVolumeButtonAnimation";
+import { useVolume } from "../../hooks/useVolume";
 
 type Props = {
-  volume: number;
   toggleVolumeTrack: () => void;
 };
 
-export const VolumeButton = memo(({ volume, toggleVolumeTrack }: Props) => {
+export const VolumeButton = memo(({ toggleVolumeTrack }: Props) => {
+  const { volume } = useVolume();
   const { waveSmControls, waveMdControls, waveLgControls, waveSmVariants } = useVolumeButtonAnimation({ volume });
 
   return (
