@@ -25,7 +25,6 @@ export const usePlayPause = ({ hasInteracted }: Props) => {
   }, [isPlaying, hasInteracted]);
 
   useEffect(() => {
-    // if (!isLoading) return;
     displacementRef.current?.beginElement();
     rotateDisplacementRef.current?.beginElement();
   }, [isLoading]);
