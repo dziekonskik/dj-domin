@@ -1,4 +1,4 @@
-import { useCallback, useRef, useEffect } from "react";
+import { useCallback, useRef } from "react";
 import { useUIContext } from "@/app/context";
 
 export const useBodyScrollLock = () => {
@@ -30,10 +30,6 @@ export const useBodyScrollLock = () => {
     document.body.style.paddingRight = "";
     window.scrollTo(0, scrollYRef.current);
   }, [isBodyScrollLocked, setBodyScrollUnlocked]);
-
-  useEffect(() => {
-    return () => unlockScroll();
-  }, [unlockScroll]);
 
   return { lockScroll, unlockScroll };
 };
