@@ -1,16 +1,17 @@
 import { GetActionTypes, CreateBindedActions } from "@type-hub/re-action";
 import { actionCreators, usePlayerControls } from "../actions";
 
-export type Track = {
+export type TrackData = {
   title: string;
   src: string;
 };
 
+export type PlayerState = "loading" | "ready" | "playing" | "paused" | "error";
+
 export type State = {
-  playerState: "loading" | "ready" | "playing" | "paused" | "error";
-  tracks: Track[];
+  playerState: PlayerState;
+  tracks: TrackData[];
   currentIndex: number;
-  currentId: number;
 };
 
 export type Actions = GetActionTypes<typeof actionCreators>;

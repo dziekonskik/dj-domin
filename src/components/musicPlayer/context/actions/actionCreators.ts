@@ -1,11 +1,10 @@
 import { setupActionsCreators } from "@type-hub/re-action";
+import { PlayerState } from "../types/state";
 
 export const actionCreators = setupActionsCreators({
-  setReady: () => null,
-  setError: (_, error) => {
+  setWorkingState: (newState: Exclude<PlayerState, "error">) => newState,
+  setErrorState: (_, error) => {
     throw new Error(`Player error: ${error}`);
   },
-  setPlaying: (id) => id,
-  setPaused: () => null,
-  setLoading: () => null,
+  setCurrentIndex: (newIndex: number) => newIndex,
 });

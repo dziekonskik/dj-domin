@@ -10,17 +10,26 @@ export const usePlayerControls = (state: State, actions: ActionCreators) => {
     soundRef.current = new Howl({
       src: state.tracks[state.currentIndex].src,
       preload: true,
-      onload: actions.setReady,
-      onplay: actions.setPlaying,
-      onpause: actions.setPaused,
-      onend: actions.setReady,
+      onload: () => actions.setWorkingState("ready"),
+      onplay: () => actions.setWorkingState("playing"),
+      onpause: () => actions.setWorkingState("paused"),
+      onend: () => actions.setWorkingState("ready"),
+      onloaderror: actions.setErrorState,
+      onplayerror: actions.setErrorState,
     });
-  }, [actions, state.currentIndex, state.tracks]);
+  }, [actions, state.tracks, state.currentIndex]);
 
-  const togglePlay = useCallback(() => playPause(soundRef, state, actions), [state, actions]);
+  const togglePlay = useCallback(() => playPause(soundRef), []);
   const getTrackSeconds = useCallback(() => soundRef.current?.seek() ?? 0, []);
   const setTrackSeconds = useCallback((seconds: number) => soundRef.current?.seek(seconds), []);
   const getDuration = useCallback(() => soundRef.current?.duration() ?? 0, []);
+  const setCurrentTrackIndex = useCallback(
+    (newIndex: number) => {
+      if (newIndex === state.currentIndex) return;
+      actions.setCurrentIndex(newIndex);
+    },
+    [actions, state.currentIndex]
+  );
 
-  return { togglePlay, getDuration, getTrackSeconds, setTrackSeconds };
+  return { togglePlay, getDuration, getTrackSeconds, setTrackSeconds, setCurrentTrackIndex };
 };
