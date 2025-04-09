@@ -18,10 +18,8 @@ export async function MusicPlayer() {
   const tracksPromise = getMusic();
 
   return (
-    <article className="md:mr-auto">
-      <Suspense fallback={<PlayerLoading />}>
-        <Player {...{ tracksPromise }} />
-      </Suspense>
-    </article>
+    <Suspense fallback={<PlayerLoading />}>
+      <Player {...{ tracksPromise }} />
+    </Suspense>
   );
 }

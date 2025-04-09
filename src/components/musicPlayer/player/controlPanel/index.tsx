@@ -1,16 +1,21 @@
-import { Next } from "./components/next";
+import { usePlayer } from "../../context";
+import { Forward } from "./components/forward";
 import { PlayPause } from "./components/playPause";
 import { ProgressControl } from "./components/progress";
 import { Volume } from "./components/volume";
 
 export const ControlPanel = () => {
+  const { playerState, togglePlay } = usePlayer();
+  const isPlaying = playerState === "playing";
+  const isLoading = playerState === "loading";
+
   return (
-    <div className="w-full">
+    <div className="w-full bg-black sm:rounded-md px-2 py-4">
       <ProgressControl />
-      <div className="mx-auto flex justify-center md:gap-5 lg:gap-7 xl:gap-10">
+      <div className="mx-auto flex justify-center gap-10 xl:gap-10">
         <Volume />
-        <PlayPause />
-        <Next />
+        <PlayPause {...{ isLoading, isPlaying, togglePlay }} />
+        <Forward />
       </div>
     </div>
   );

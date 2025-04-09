@@ -1,15 +1,13 @@
-import { usePlayer } from "@/components/musicPlayer/context";
 import { COLOR } from "@/consts/colors";
 import { useEffect, useRef } from "react";
 
 type Props = {
   hasInteracted: boolean;
+  isLoading: boolean;
+  isPlaying: boolean;
 };
 
-export const usePlayPause = ({ hasInteracted }: Props) => {
-  const { playerState } = usePlayer();
-  const isPlaying = playerState === "playing";
-  const isLoading = playerState === "loading";
+export const usePlayPause = ({ hasInteracted, isLoading, isPlaying }: Props) => {
   const circleRef = useRef<SVGCircleElement>(null);
   const pathLeftRef = useRef<SVGAnimateElement>(null);
   const pathRightRef = useRef<SVGAnimateElement>(null);

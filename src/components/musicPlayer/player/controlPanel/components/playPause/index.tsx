@@ -1,18 +1,20 @@
 "use client";
 import { useState } from "react";
 import { PAUSE_LEFT, PAUSE_RIGHT, PLAY_LEFT, PLAY_RIGHT, ANIMATE_CONFIG } from "./consts/paths";
-import { usePlayer } from "@/components/musicPlayer/context";
 import { PATH_CONFIG } from "../../../consts/pathConfig";
 import { usePlayPause } from "./hooks/usePlayPause";
 import { COLOR } from "@/consts/colors";
 
-export const PlayPause = () => {
+type Props = {
+  isLoading: boolean;
+  isPlaying: boolean;
+  togglePlay: () => Promise<void>;
+};
+
+export const PlayPause = ({ isLoading, isPlaying, togglePlay }: Props) => {
   const [hasInteracted, setHasInteracted] = useState(false);
-  const { playerState, togglePlay } = usePlayer();
-  const isPlaying = playerState === "playing";
-  const isLoading = playerState === "loading";
   const { circleRef, displacementRef, opacityAnimRef, pathLeftRef, pathRightRef, rotateDisplacementRef } = usePlayPause(
-    { hasInteracted }
+    { hasInteracted, isLoading, isPlaying }
   );
 
   const handleClick = async () => {
@@ -21,7 +23,7 @@ export const PlayPause = () => {
   };
 
   return (
-    <button className="w-14 aspect-square" id="button" onClick={handleClick}>
+    <button className="w-14 xl:w-16 aspect-square" id="button" onClick={handleClick}>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <filter id="loading">
           <feTurbulence type="fractalNoise" baseFrequency="0.3" numOctaves="1" result="noise" />

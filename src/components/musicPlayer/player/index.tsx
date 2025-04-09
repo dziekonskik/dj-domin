@@ -1,10 +1,12 @@
 "use client";
 import { use } from "react";
-import { Track, PlayerStoreProvider } from "../context";
+import { TrackData, PlayerStoreProvider } from "../context";
 import { ControlPanel } from "./controlPanel";
+import { MobileTrackNavigator } from "./mobileTrackNavigator";
+import { DesktopTrackList } from "./desktopTrackList";
 
 type Props = {
-  tracksPromise: Promise<Track[]>;
+  tracksPromise: Promise<TrackData[]>;
 };
 
 export const Player = ({ tracksPromise }: Props) => {
@@ -12,9 +14,11 @@ export const Player = ({ tracksPromise }: Props) => {
 
   return (
     <PlayerStoreProvider {...{ tracks }}>
-      <div className="bg-black rounded-md px-2 py-4 mr-auto w-full sm:w-sm flex">
+      <article className="w-full sm:w-sm grid">
+        <MobileTrackNavigator />
         <ControlPanel />
-      </div>
+        <DesktopTrackList />
+      </article>
     </PlayerStoreProvider>
   );
 };
