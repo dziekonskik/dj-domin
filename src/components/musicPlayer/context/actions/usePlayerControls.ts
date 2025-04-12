@@ -2,34 +2,26 @@ import { useCallback, useEffect, useRef } from "react";
 import { Howl } from "howler";
 import { ActionCreators, State } from "../types/state";
 import { playPause } from "./playerControls";
+import { initHowler } from "./initHowler";
+import { changeSong } from "./playerControls/changeSong";
+import { getNextSongIndex } from "../utils/getNextSongIndex";
+import { orZero } from "@/utils/orZero";
 
 export const usePlayerControls = (state: State, actions: ActionCreators) => {
   const soundRef = useRef<Howl | null>(null);
 
   useEffect(() => {
-    soundRef.current = new Howl({
-      src: state.tracks[state.currentIndex].src,
-      preload: true,
-      onload: () => actions.setWorkingState("ready"),
-      onplay: () => actions.setWorkingState("playing"),
-      onpause: () => actions.setWorkingState("paused"),
-      onend: () => actions.setWorkingState("ready"),
-      onloaderror: actions.setErrorState,
-      onplayerror: actions.setErrorState,
-    });
+    soundRef.current = initHowler(state.tracks[state.currentIndex].src, actions);
   }, [actions, state.tracks, state.currentIndex]);
 
   const togglePlay = useCallback(() => playPause(soundRef), []);
-  const getTrackSeconds = useCallback(() => soundRef.current?.seek() ?? 0, []);
   const setTrackSeconds = useCallback((seconds: number) => soundRef.current?.seek(seconds), []);
-  const getDuration = useCallback(() => soundRef.current?.duration() ?? 0, []);
-  const setCurrentTrackIndex = useCallback(
-    (newIndex: number) => {
-      if (newIndex === state.currentIndex) return;
-      actions.setCurrentIndex(newIndex);
-    },
-    [actions, state.currentIndex]
-  );
+  const getTrackSeconds = useCallback(() => orZero(soundRef.current?.seek()), []);
+  const getDuration = useCallback(() => orZero(soundRef.current?.duration()), []);
+  const playNext = useCallback(async () => {
+    actions.setCurrentIndex(getNextSongIndex(state));
+    await changeSong(soundRef, actions, state);
+  }, [actions, state]);
 
-  return { togglePlay, getDuration, getTrackSeconds, setTrackSeconds, setCurrentTrackIndex };
+  return { togglePlay, getDuration, getTrackSeconds, setTrackSeconds, playNext };
 };
