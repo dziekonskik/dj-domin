@@ -7,13 +7,13 @@ type Props = {
 };
 
 export const ProgressSlider = memo(({ setProgress }: Props) => {
-  const { ballRef, ballX, handleDrag, progressLineLength, progressLineRef, trackRef } = useProgressSlider({
+  const { handleTap, handleDrag, ballRef, ballX, progressLineLength, progressLineRef, trackRef } = useProgressSlider({
     setProgress,
   });
 
   return (
-    <div className="mb-2">
-      <div ref={trackRef} className="h-0.5 rounded-2xl bg-white relative">
+    <motion.div onTap={handleTap} className="py-2 flex items-center">
+      <motion.div ref={trackRef} className="h-0.5 rounded-2xl bg-white relative w-full">
         <motion.div ref={progressLineRef} className="h-full absolute" style={{ width: progressLineLength }} />
         <motion.div
           ref={ballRef}
@@ -27,8 +27,8 @@ export const ProgressSlider = memo(({ setProgress }: Props) => {
           dragElastic={false}
           onDrag={handleDrag}
         />
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 });
 ProgressSlider.displayName = "ProgressSlider";

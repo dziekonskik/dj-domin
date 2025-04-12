@@ -2,31 +2,50 @@ import { useRef, useEffect, useCallback } from "react";
 import { PanInfo, useAnimationFrame, useMotionValue } from "motion/react";
 import { COLOR } from "@/consts/colors";
 import { usePlayer } from "@/components/musicPlayer/context";
+import { orZero } from "@/utils/orZero";
 
 type Props = {
   setProgress: (seconds: number) => void;
 };
 
 export const useProgressSlider = ({ setProgress }: Props) => {
-  const { getDuration, getTrackSeconds, playerState } = usePlayer();
+  const { getDuration, getTrackSeconds, playerState, currentIndex } = usePlayer();
   const trackRef = useRef<HTMLDivElement>(null);
   const ballRef = useRef<HTMLDivElement>(null);
   const progressLineRef = useRef<HTMLDivElement>(null);
   const ballX = useMotionValue(0);
   const progressLineLength = useMotionValue(0);
   const isPlaying = playerState === "playing";
+  const savedIndex = useRef(currentIndex);
 
-  const handleDrag = useCallback(
-    (_: Event, { point }: PanInfo) => {
+  const handleSliderPos = useCallback(
+    (x: number) => {
       const trackRect = trackRef.current?.getBoundingClientRect();
       const ballRect = ballRef.current?.getBoundingClientRect();
       if (!trackRect || !ballRect) return;
-      if (point.x < trackRect.left || point.x > trackRect.right) return;
-      const currentProgress = ((point.x - trackRect.left) / trackRect.width) * getDuration();
+      if (x < trackRect.left || x > trackRect.right) return;
+      const currentProgress = orZero(((x - trackRect.left) / trackRect.width) * getDuration());
       setProgress(currentProgress);
-      progressLineLength.set(point.x - trackRect.left);
+      progressLineLength.set(x - trackRect.left);
     },
-    [getDuration, progressLineLength, setProgress]
+    [getDuration, setProgress, progressLineLength]
+  );
+
+  const handleTap = useCallback(
+    (_: Event, { point }: PanInfo) => {
+      const trackRect = trackRef.current?.getBoundingClientRect();
+      if (!trackRect) return;
+      handleSliderPos(point.x);
+      ballX.set(point.x - trackRect.left);
+    },
+    [ballX, handleSliderPos]
+  );
+
+  const handleDrag = useCallback(
+    (_: Event, { point }: PanInfo) => {
+      handleSliderPos(point.x);
+    },
+    [handleSliderPos]
   );
 
   useEffect(() => {
@@ -43,11 +62,14 @@ export const useProgressSlider = ({ setProgress }: Props) => {
   useAnimationFrame(() => {
     const trackRect = trackRef.current?.getBoundingClientRect();
     const ballRect = ballRef.current?.getBoundingClientRect();
-    if (!trackRect || !ballRect || !isPlaying) return;
-    const currentPosition = (getTrackSeconds() / getDuration()) * trackRect.width;
+    const isIdle = !isPlaying && currentIndex === savedIndex.current;
+    if (!trackRect || !ballRect || isIdle) return;
+
+    const currentPosition = orZero((getTrackSeconds() / getDuration()) * trackRect.width);
     ballX.set(currentPosition);
     progressLineLength.set(currentPosition);
+    savedIndex.current = currentIndex;
   });
 
-  return { handleDrag, ballX, ballRef, progressLineRef, progressLineLength, trackRef };
+  return { handleDrag, handleTap, ballX, ballRef, progressLineRef, progressLineLength, trackRef };
 };
