@@ -5,17 +5,17 @@ import { ProgressControl } from "./components/progress";
 import { Volume } from "./components/volume";
 
 export const ControlPanel = () => {
-  const { playerState, togglePlay } = usePlayer();
+  const { playerState, togglePlay, playNext } = usePlayer();
   const isPlaying = playerState === "playing";
   const isLoading = playerState === "loading";
 
   return (
-    <div className="w-full bg-black sm:rounded-md px-2 py-4">
+    <div className="w-full bg-black sm:rounded-md px-2 pb-4 pt-2">
       <ProgressControl />
       <div className="mx-auto flex justify-center gap-10 xl:gap-10">
         <Volume />
         <PlayPause {...{ isLoading, isPlaying, togglePlay }} />
-        <Forward />
+        <Forward {...{ playNext }} />
       </div>
     </div>
   );
