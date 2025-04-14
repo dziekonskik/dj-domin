@@ -15,7 +15,7 @@ export const VolumeButton = memo(({ toggleVolumeTrack }: Props) => {
   const { waveSmControls, waveMdControls, waveLgControls, waveSmVariants } = useVolumeButtonAnimation({ volume });
 
   return (
-    <button onClick={toggleVolumeTrack}>
+    <button onClick={toggleVolumeTrack} className="cursor-pointer">
       <motion.svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 30 26"

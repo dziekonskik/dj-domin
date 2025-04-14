@@ -12,7 +12,7 @@ export const ProgressSlider = memo(({ setProgress }: Props) => {
   });
 
   return (
-    <motion.div onTap={handleTap} className="py-2 flex items-center">
+    <motion.div onTap={handleTap} className="py-2 flex items-center cursor-pointer">
       <motion.div ref={trackRef} className="h-0.5 rounded-2xl bg-white relative w-full">
         <motion.div ref={progressLineRef} className="h-full absolute" style={{ width: progressLineLength }} />
         <motion.div

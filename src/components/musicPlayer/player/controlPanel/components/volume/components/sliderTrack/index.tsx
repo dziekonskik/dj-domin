@@ -15,7 +15,7 @@ export const SliderTrack = ({ isOpen, trackRef, thumbControls }: Props) => {
   const initialX = getInitialVolumePos(volume);
 
   return (
-    <motion.div className="absolute w-20 -translate-x-20 py-2" onTap={handleClick}>
+    <motion.div className="absolute w-20 -translate-x-20 py-2 cursor-pointer" onTap={handleClick}>
       <motion.div
         ref={trackRef}
         className="bg-white h-0.5 rounded-xl"

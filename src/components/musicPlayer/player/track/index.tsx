@@ -3,22 +3,25 @@ import { motion } from "motion/react";
 import { TrackData } from "../../context";
 import SzewcuLogo from "../../../../../public/djszewcu-green.svg";
 import { PlayPause } from "../controlPanel/components/playPause";
+import { memo } from "react";
 
 type Props = {
   track?: TrackData;
   isSelected?: boolean;
   isPlaying: boolean;
   togglePlay: () => Promise<void>;
+  selectTrack?: () => void;
 };
 
-export const Track = ({ track, isPlaying, isSelected, togglePlay }: Props) => {
+export const Track = memo(({ track, isPlaying, isSelected, togglePlay, selectTrack }: Props) => {
   return (
     <motion.div
       initial={{ scale: 1 }}
       animate={{ scale: isSelected ? 1.02 : 1 }}
-      className="bg-black flex items-center sm:rounded-sm text-white gap-2 px-2 py-3 sm:p-2 overflow-hidden"
+      className="bg-black flex items-center sm:rounded-sm text-white gap-2 px-2 py-3 sm:p-2 overflow-hidden cursor-pointer"
+      onTap={selectTrack}
     >
-      <span className="mx-1">
+      <span className="mx-1 select-none">
         <Image src={SzewcuLogo} alt="Dj Domin logo" width={20} height={20} className="scale-150 -translate-y-0.5" />
       </span>
       <span className="text-xs max-w-3xs truncate text-left select-none">{track?.title}</span>
@@ -29,4 +32,5 @@ export const Track = ({ track, isPlaying, isSelected, togglePlay }: Props) => {
       </span>
     </motion.div>
   );
-};
+});
+Track.displayName = "Track";

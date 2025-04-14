@@ -23,7 +23,7 @@ export const PlayPause = memo(({ isLoading, isPlaying, togglePlay }: Props) => {
   };
 
   return (
-    <button className="w-14 xl:w-16 aspect-square" id="button" onClick={handleClick}>
+    <motion.button className="w-14 xl:w-16 aspect-square cursor-pointer" id="button" onTap={handleClick}>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <filter id="loading">
           <feTurbulence type="fractalNoise" baseFrequency="0.3" numOctaves="1" result="noise" />
@@ -64,7 +64,7 @@ export const PlayPause = memo(({ isLoading, isPlaying, togglePlay }: Props) => {
           fill="white"
         />
       </svg>
-    </button>
+    </motion.button>
   );
 });
 PlayPause.displayName = "PlayPause";
