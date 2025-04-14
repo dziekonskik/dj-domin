@@ -10,7 +10,7 @@ export const Forward = ({ playNext }: Props) => {
   const { handleClick, lineControl, triangleControl } = useForwardButton({ playNext });
 
   return (
-    <button className="flex items-center" onClick={handleClick}>
+    <button className="flex items-center cursor-pointer" onClick={handleClick}>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 24" fill="white" className="w-6" id="icon">
         <motion.path
           animate={triangleControl}

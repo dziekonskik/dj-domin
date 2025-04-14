@@ -1,6 +1,6 @@
 import { SoundRef } from "../../types/controls";
 
-export const playPause = async (soundRef: SoundRef): Promise<void> => {
+export async function playPause(soundRef: SoundRef): Promise<void> {
   const sound = soundRef.current;
   if (!sound) return;
 
@@ -15,4 +15,4 @@ export const playPause = async (soundRef: SoundRef): Promise<void> => {
       sound.play();
     });
   }
-};
+}
