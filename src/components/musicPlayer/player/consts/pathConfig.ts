@@ -2,7 +2,7 @@ import { SVGProps } from "react";
 
 export const PATH_CONFIG = {
   stroke: "white",
-  strokeWidth: "1.5",
+  strokeWidth: "1",
   strokeLinecap: "round",
   strokeLinejoin: "round",
   fill: "transparent",

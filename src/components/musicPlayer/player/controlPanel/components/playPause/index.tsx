@@ -1,6 +1,7 @@
 "use client";
-import { useState } from "react";
-import { PAUSE_LEFT, PAUSE_RIGHT, PLAY_LEFT, PLAY_RIGHT, ANIMATE_CONFIG } from "./consts/paths";
+import { memo } from "react";
+import { motion } from "motion/react";
+import { ANIMATE_CONFIG } from "./consts/paths";
 import { PATH_CONFIG } from "../../../consts/pathConfig";
 import { usePlayPause } from "./hooks/usePlayPause";
 import { COLOR } from "@/consts/colors";
@@ -11,15 +12,14 @@ type Props = {
   togglePlay: () => Promise<void>;
 };
 
-export const PlayPause = ({ isLoading, isPlaying, togglePlay }: Props) => {
-  const [hasInteracted, setHasInteracted] = useState(false);
-  const { circleRef, displacementRef, opacityAnimRef, pathLeftRef, pathRightRef, rotateDisplacementRef } = usePlayPause(
-    { hasInteracted, isLoading, isPlaying }
-  );
+export const PlayPause = memo(({ isLoading, isPlaying, togglePlay }: Props) => {
+  const { circleRef, displacementRef, rotateDisplacementRef, variantsLeftPath, variantsRightPath } = usePlayPause({
+    isLoading,
+    isPlaying,
+  });
 
   const handleClick = async () => {
     await togglePlay();
-    if (!hasInteracted) setHasInteracted(true);
   };
 
   return (
@@ -47,31 +47,24 @@ export const PlayPause = ({ isLoading, isPlaying, togglePlay }: Props) => {
             dur="100s"
           />
         </circle>
-        <path d={isPlaying ? PAUSE_LEFT : PLAY_LEFT} {...PATH_CONFIG} fill="white">
-          <animate
-            ref={pathLeftRef}
-            from={isPlaying ? PLAY_LEFT : PAUSE_LEFT}
-            to={isPlaying ? PAUSE_LEFT : PLAY_LEFT}
-            {...ANIMATE_CONFIG}
-          />
-        </path>
-        <path d={isPlaying ? PAUSE_RIGHT : PLAY_RIGHT} {...PATH_CONFIG} fill="white" opacity={isPlaying ? 1 : 0}>
-          <animate
-            ref={pathRightRef}
-            from={isPlaying ? PLAY_RIGHT : PAUSE_RIGHT}
-            to={isPlaying ? PAUSE_RIGHT : PLAY_RIGHT}
-            {...ANIMATE_CONFIG}
-          />
-          <animate
-            ref={opacityAnimRef}
-            from={isPlaying ? "0" : "1"}
-            to={isPlaying ? "1" : "0"}
-            {...ANIMATE_CONFIG}
-            dur="0.1s"
-            attributeName="opacity"
-          />
-        </path>
+        <motion.path
+          variants={variantsLeftPath}
+          initial="pause"
+          animate={isPlaying ? "play" : "pause"}
+          {...PATH_CONFIG}
+          stroke="white"
+          fill="white"
+        />
+        <motion.path
+          variants={variantsRightPath}
+          initial="pause"
+          animate={isPlaying ? "play" : "pause"}
+          {...PATH_CONFIG}
+          stroke="white"
+          fill="white"
+        />
       </svg>
     </button>
   );
-};
+});
+PlayPause.displayName = "PlayPause";

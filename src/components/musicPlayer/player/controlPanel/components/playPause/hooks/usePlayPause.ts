@@ -1,26 +1,16 @@
 import { COLOR } from "@/consts/colors";
 import { useEffect, useRef } from "react";
+import { PLAY_LEFT, PAUSE_LEFT, PLAY_RIGHT, PAUSE_RIGHT } from "../consts/paths";
 
 type Props = {
-  hasInteracted: boolean;
   isLoading: boolean;
   isPlaying: boolean;
 };
 
-export const usePlayPause = ({ hasInteracted, isLoading, isPlaying }: Props) => {
+export const usePlayPause = ({ isLoading, isPlaying }: Props) => {
   const circleRef = useRef<SVGCircleElement>(null);
-  const pathLeftRef = useRef<SVGAnimateElement>(null);
-  const pathRightRef = useRef<SVGAnimateElement>(null);
-  const opacityAnimRef = useRef<SVGAnimateElement>(null);
   const displacementRef = useRef<SVGAnimateElement>(null);
   const rotateDisplacementRef = useRef<SVGAnimateElement>(null);
-
-  useEffect(() => {
-    if (!hasInteracted) return;
-    pathLeftRef.current?.beginElement();
-    pathRightRef.current?.beginElement();
-    opacityAnimRef.current?.beginElement();
-  }, [isPlaying, hasInteracted]);
 
   useEffect(() => {
     displacementRef.current?.beginElement();
@@ -36,5 +26,23 @@ export const usePlayPause = ({ hasInteracted, isLoading, isPlaying }: Props) => 
     return () => colorAnimation?.finish();
   }, [isPlaying]);
 
-  return { circleRef, pathLeftRef, pathRightRef, opacityAnimRef, displacementRef, rotateDisplacementRef };
+  const variantsLeftPath = {
+    play: {
+      d: PLAY_LEFT,
+    },
+    pause: {
+      d: PAUSE_LEFT,
+    },
+  };
+
+  const variantsRightPath = {
+    play: {
+      d: PLAY_RIGHT,
+    },
+    pause: {
+      d: PAUSE_RIGHT,
+    },
+  };
+
+  return { circleRef, variantsLeftPath, variantsRightPath, displacementRef, rotateDisplacementRef };
 };
