@@ -15,11 +15,12 @@ type Props = {
 
 export const Track = memo(({ track, isPlaying, isSelected, togglePlay, selectTrack }: Props) => {
   return (
-    <motion.div
-      initial={{ scale: 1 }}
-      animate={{ scale: isSelected ? 1.02 : 1 }}
-      className="bg-black flex items-center sm:rounded-sm text-white gap-2 px-2 py-3 sm:p-2 overflow-hidden cursor-pointer"
-      onTap={selectTrack}
+    <motion.li
+      animate={{ scale: isSelected ? 1.02 : 1, y: 0 }}
+      exit={{ y: 20 }}
+      transition={{ duration: 0.2 }}
+      className="bg-black flex items-center sm:rounded-sm text-white gap-2 px-2 py-3 sm:p-2 overflow-hidden cursor-pointer h-9"
+      onClick={selectTrack}
     >
       <span className="mx-1 select-none">
         <Image src={SzewcuLogo} alt="Dj Domin logo" width={20} height={20} className="scale-150 -translate-y-0.5" />
@@ -30,7 +31,7 @@ export const Track = memo(({ track, isPlaying, isSelected, togglePlay, selectTra
           <PlayPause {...{ isPlaying, togglePlay }} isLoading={false} />
         </span>
       </span>
-    </motion.div>
+    </motion.li>
   );
 });
 Track.displayName = "Track";

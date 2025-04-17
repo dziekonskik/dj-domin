@@ -1,18 +1,15 @@
 import { SoundRef } from "../../types/controls";
 
 export async function playPause(soundRef: SoundRef): Promise<void> {
-  const sound = soundRef.current;
-  if (!sound) return;
-
-  if (sound.playing()) {
+  if (soundRef.current?.playing()) {
     return new Promise((resolve) => {
-      sound.once("pause", () => resolve());
-      sound.pause();
+      soundRef.current?.once("pause", () => resolve());
+      soundRef.current?.pause();
     });
   } else {
     return new Promise((resolve) => {
-      sound.once("play", () => resolve());
-      sound.play();
+      soundRef.current?.once("play", () => resolve());
+      soundRef.current?.play();
     });
   }
 }

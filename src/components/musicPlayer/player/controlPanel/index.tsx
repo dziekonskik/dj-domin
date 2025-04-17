@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import { usePlayer } from "../../context";
 import { Forward } from "./components/forward";
 import { PlayPause } from "./components/playPause";
@@ -10,13 +11,17 @@ export const ControlPanel = () => {
   const isLoading = playerState === "loading";
 
   return (
-    <div className="w-full bg-black sm:rounded-md px-2 pb-4 pt-2">
+    <motion.div
+      layout="position"
+      transition={{ duration: 0.2 }}
+      className="w-full bg-black sm:rounded-md px-2 pb-4 pt-2"
+    >
       <ProgressControl />
       <div className="mx-auto flex justify-center gap-10 xl:gap-10">
         <Volume />
         <PlayPause {...{ isLoading, isPlaying, togglePlay }} />
         <Forward {...{ playNext }} />
       </div>
-    </div>
+    </motion.div>
   );
 };
