@@ -7,18 +7,20 @@ import { memo } from "react";
 
 type Props = {
   track?: TrackData;
+  index: number;
   isSelected?: boolean;
   isPlaying: boolean;
   togglePlay: () => Promise<void>;
   selectTrack?: () => void;
 };
 
-export const Track = memo(({ track, isPlaying, isSelected, togglePlay, selectTrack }: Props) => {
+export const Track = memo(({ track, index, isPlaying, isSelected, togglePlay, selectTrack }: Props) => {
   return (
     <motion.li
-      animate={{ scale: isSelected ? 1.02 : 1, y: 0 }}
-      exit={{ y: 20 }}
-      transition={{ duration: 0.2 }}
+      initial={{ scale: 0.97 }}
+      animate={{ scale: isSelected ? 1.02 : 1 }}
+      exit={{ scale: 0.97 }}
+      transition={{ delay: index * 0.02 }}
       className="bg-black flex items-center sm:rounded-sm text-white gap-2 px-2 py-3 sm:p-2 overflow-hidden cursor-pointer h-9"
       onClick={selectTrack}
     >
