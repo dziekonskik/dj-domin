@@ -1,7 +1,13 @@
+import { About } from "./components/main/about";
+import { Hero } from "./components/main/hero";
+
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   return (
-    <main className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <h1 className="font-grotezk">DJ DOMIN</h1>
+    <main className="grid">
+      <Hero />
+      <About />
     </main>
   );
 }

@@ -5,7 +5,7 @@ import footSvg from "../../../../../public/Foot.svg";
 
 export const About = () => {
   return (
-    <section className="bg-primary overflow-hidden">
+    <section className="bg-primary overflow-hidden h-screen">
       <div className="container mx-auto flex flex-col sm:grid sm:grid-cols-2 my-[60px] md:my-[100px] xl:mb-[150px] sm:px-2 md:px-4">
         <SectionTitle className="sm:hidden pl-2 sm:pl-0">o mnie</SectionTitle>
         <div className="order-2 sm:order-1 pl-2 sm:pl-0">
