@@ -12,7 +12,7 @@ export const MobileTrackNavigator = () => {
       <span className="absolute -top-13 ml-2 z-10">
         <NavigationBtns next={playNext} prev={playPrev} />
       </span>
-      <Track track={currentTrack} {...{ isPlaying, togglePlay }} />
+      <Track track={currentTrack} {...{ isPlaying, togglePlay }} index={0} />
     </div>
   );
 };
