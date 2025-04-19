@@ -5,6 +5,15 @@ export const reducer = (state: State, action: Actions) =>
   match(action)
     .returnType<State>()
     .with({ type: "setErrorState" }, () => ({ ...state, playerState: "error" }))
-    .with({ type: "setWorkingState" }, ({ payload }) => ({ ...state, playerState: payload }))
-    .with({ type: "setCurrentIndex" }, ({ payload }) => ({ ...state, currentIndex: payload }))
+    .with({ type: "setWorkingState" }, ({ payload }) => {
+      if (payload === "playing") {
+        return {
+          ...state,
+          playerState: payload,
+          currentTrack: state.tracks[state.activeIndex],
+        };
+      }
+      return { ...state, playerState: payload };
+    })
+    .with({ type: "setActiveIndex" }, ({ payload }) => ({ ...state, activeIndex: payload }))
     .exhaustive();

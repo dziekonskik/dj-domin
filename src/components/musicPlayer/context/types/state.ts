@@ -11,7 +11,8 @@ export type PlayerState = "loading" | "ready" | "playing" | "paused" | "error";
 export type State = {
   playerState: PlayerState;
   tracks: TrackData[];
-  currentIndex: number;
+  currentTrack: TrackData | null;
+  activeIndex: number;
 };
 
 export type Actions = GetActionTypes<typeof actionCreators>;

@@ -6,5 +6,5 @@ export const actionCreators = setupActionsCreators({
   setErrorState: (_, error) => {
     throw new Error(`Player error: ${error}`);
   },
-  setCurrentIndex: (newIndex: number) => newIndex,
+  setActiveIndex: (newIndex: number) => newIndex,
 });

@@ -3,16 +3,16 @@ import { NavigationBtns } from "../navigationBtns";
 import { Track } from "../track";
 
 export const MobileTrackNavigator = () => {
-  const { tracks, playerState, currentIndex, togglePlay } = usePlayer();
+  const { tracks, playerState, activeIndex, togglePlay, playPrev, playNext } = usePlayer();
   const isPlaying = playerState === "playing";
-  const currenTrack = tracks[currentIndex];
+  const currentTrack = tracks[activeIndex];
 
   return (
     <div className="sm:hidden relative">
       <span className="absolute -top-13 ml-2 z-10">
-        <NavigationBtns />
+        <NavigationBtns next={playNext} prev={playPrev} />
       </span>
-      <Track track={currenTrack} {...{ isPlaying, togglePlay }} />
+      <Track track={currentTrack} {...{ isPlaying, togglePlay }} />
     </div>
   );
 };

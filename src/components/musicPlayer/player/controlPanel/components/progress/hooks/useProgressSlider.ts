@@ -9,14 +9,14 @@ type Props = {
 };
 
 export const useProgressSlider = ({ setProgress }: Props) => {
-  const { getDuration, getTrackSeconds, playerState, currentIndex } = usePlayer();
+  const { getDuration, getTrackSeconds, playerState, activeIndex } = usePlayer();
   const trackRef = useRef<HTMLDivElement>(null);
   const ballRef = useRef<HTMLDivElement>(null);
   const progressLineRef = useRef<HTMLDivElement>(null);
   const ballX = useMotionValue(0);
   const progressLineLength = useMotionValue(0);
   const isPlaying = playerState === "playing";
-  const savedIndex = useRef(currentIndex);
+  const savedIndex = useRef(activeIndex);
 
   const handleSliderPos = useCallback(
     (x: number) => {
@@ -62,13 +62,13 @@ export const useProgressSlider = ({ setProgress }: Props) => {
   useAnimationFrame(() => {
     const trackRect = trackRef.current?.getBoundingClientRect();
     const ballRect = ballRef.current?.getBoundingClientRect();
-    const isIdle = !isPlaying && currentIndex === savedIndex.current;
+    const isIdle = !isPlaying && activeIndex === savedIndex.current;
     if (!trackRect || !ballRect || isIdle) return;
 
     const currentPosition = orZero((getTrackSeconds() / getDuration()) * trackRect.width);
     ballX.set(currentPosition);
     progressLineLength.set(currentPosition);
-    savedIndex.current = currentIndex;
+    savedIndex.current = activeIndex;
   });
 
   return { handleDrag, handleTap, ballX, ballRef, progressLineRef, progressLineLength, trackRef };
