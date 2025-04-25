@@ -13,6 +13,7 @@ export type State = {
   tracks: TrackData[];
   currentTrack: TrackData | null;
   activeIndex: number;
+  currentPageIndex: number;
 };
 
 export type Actions = GetActionTypes<typeof actionCreators>;

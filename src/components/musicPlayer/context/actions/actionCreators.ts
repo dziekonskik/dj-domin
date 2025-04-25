@@ -7,4 +7,5 @@ export const actionCreators = setupActionsCreators({
     throw new Error(`Player error: ${error}`);
   },
   setActiveIndex: (newIndex: number) => newIndex,
+  setCurrentPageIndex: (newIndex: number) => newIndex,
 });

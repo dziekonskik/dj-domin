@@ -16,4 +16,5 @@ export const reducer = (state: State, action: Actions) =>
       return { ...state, playerState: payload };
     })
     .with({ type: "setActiveIndex" }, ({ payload }) => ({ ...state, activeIndex: payload }))
+    .with({ type: "setCurrentPageIndex" }, ({ payload }) => ({ ...state, currentPageIndex: payload }))
     .exhaustive();

@@ -5,4 +5,5 @@ export const initState = {
   tracks: [],
   currentTrack: null,
   activeIndex: 0,
+  currentPageIndex: 0,
 } as const satisfies State;

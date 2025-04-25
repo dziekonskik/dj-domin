@@ -42,5 +42,6 @@ export const usePlayerControls = (state: State, actions: ActionCreators) => {
     getDuration,
     getTrackSeconds,
     setTrackSeconds,
+    setCurrentPageIndex: actions.setCurrentPageIndex,
   };
 };
