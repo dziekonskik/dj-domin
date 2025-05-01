@@ -2,6 +2,7 @@ import Image from "next/image";
 import { SectionTitle } from "@/components/sectionTitle";
 import decki from "../../../../../public/decki-w-lesie.webp";
 import footSvg from "../../../../../public/Foot.svg";
+import { CanvasImage } from "@/components/canvasImage";
 
 export const About = () => {
   return (
@@ -21,7 +22,7 @@ export const About = () => {
         </div>
         <div className="relative h-full order-1 sm:order-2 my-10 sm:my-0">
           <div className="sm:absolute inset-0 top-1/8 ml-0 sm:-mr-[150px] xl:-mr-[250px] rounded-xl 2xl:rounded-2xl overflow-hidden h-52 sm:h-64 lg:h-72 xl:h-auto">
-            <Image src={decki} alt="Abstrakcja decki w lesie" fill sizes="(max-width: 639.99px) 100vw, 50vw" priority />
+            <CanvasImage img={decki} alt="DJ w lesie" />
           </div>
         </div>
       </div>

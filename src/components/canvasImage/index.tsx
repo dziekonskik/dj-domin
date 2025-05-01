@@ -17,8 +17,8 @@ export const CanvasImage = ({ img, alt }: Props) => {
   const { setLoadedImage } = useCanvasEffects({ canvas: canvasRef.current, mousePos: mousePos.current });
 
   const onMouseMove = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
-    mousePos.current.x = e.clientX * CANVAS_SCALE - RADIUS;
-    mousePos.current.y = e.clientY * CANVAS_SCALE - RADIUS;
+    mousePos.current.x = e.nativeEvent.offsetX * CANVAS_SCALE - RADIUS;
+    mousePos.current.y = e.nativeEvent.offsetY * CANVAS_SCALE - RADIUS;
   };
   const onMouseLeave = () => {
     mousePos.current.x = 0;
