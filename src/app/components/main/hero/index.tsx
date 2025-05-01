@@ -1,18 +1,12 @@
-import Image from "next/image";
-import djDominPath from "../../../../../public/domin.webp";
+import img from "../../../../../public/domin.webp";
 import { MusicPlayer } from "@/components/musicPlayer";
+import { CanvasImage } from "@/components/canvasImage";
 
 export const Hero = () => {
   return (
     <section className="w-full h-svh sm:h-[calc(100dvh-84px)] grid lg:grid-cols-2 lg:container mx-auto md:pb-20 md:px-4">
       <div className="relative w-full md:rounded-xl sm:overflow-hidden row-start-1 col-start-1">
-        <Image
-          src={djDominPath}
-          alt="Dj Domin prowadzi imprezę"
-          fill
-          priority
-          sizes="(max-width: 639.99px) 100vw, 50vw"
-        />
+        <CanvasImage {...{ img, alt: "Dj domin" }} />
       </div>
       <div className="flex flex-col row-start-1 col-start-1 lg:col-start-2 z-10">
         <div className="px-2 grid justify-center">
