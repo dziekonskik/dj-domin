@@ -9,12 +9,12 @@ export const CircleCta = ({ onClick, text }: Props) => {
   const [scope, animate] = useAnimate();
 
   const setActiveStyles = () => {
-    animate("span", { fontSize: "26px" }, { ease: "easeOut", duration: 0.2 });
+    animate("span", { fontSize: "32px" }, { ease: "easeOut", duration: 0.2 });
     animate(scope.current, { padding: "4px" }, { ease: "easeOut", duration: 0.2 });
   };
 
   const resetStyles = () => {
-    animate("span", { fontSize: "24px" }, { ease: "easeOut" });
+    animate("span", { fontSize: "30px" }, { ease: "easeOut" });
     animate(scope.current, { padding: "8px" }, { ease: "easeOut" });
   };
 
@@ -22,7 +22,7 @@ export const CircleCta = ({ onClick, text }: Props) => {
     <motion.button
       ref={scope}
       {...{ onClick }}
-      className="border-3 rounded-full p-2 aspect-square font-grotezk text-2xl cursor-pointer"
+      className="border-3 rounded-full p-2 aspect-square font-grotezk text-3xl cursor-pointer"
       onHoverStart={setActiveStyles}
       onHoverEnd={resetStyles}
       onTapStart={setActiveStyles}
