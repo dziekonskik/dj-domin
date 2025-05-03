@@ -10,19 +10,19 @@ export const CircleCta = ({ onClick, text }: Props) => {
 
   const setActiveStyles = () => {
     animate("span", { fontSize: "32px" }, { ease: "easeOut", duration: 0.2 });
-    animate(scope.current, { padding: "4px" }, { ease: "easeOut", duration: 0.2 });
+    animate(scope.current, { padding: "4px", borderStyle: "dashed" }, { ease: "easeOut", duration: 0.2 });
   };
 
   const resetStyles = () => {
     animate("span", { fontSize: "30px" }, { ease: "easeOut" });
-    animate(scope.current, { padding: "8px" }, { ease: "easeOut" });
+    animate(scope.current, { padding: "8px", borderStyle: "solid" }, { ease: "easeOut" });
   };
 
   return (
     <motion.button
       ref={scope}
       {...{ onClick }}
-      className="border-3 rounded-full p-2 aspect-square font-grotezk text-3xl cursor-pointer"
+      className="border-3 rounded-full p-2 aspect-square font-grotezk text-3xl cursor-pointer bg-white"
       onHoverStart={setActiveStyles}
       onHoverEnd={resetStyles}
       onTapStart={setActiveStyles}
