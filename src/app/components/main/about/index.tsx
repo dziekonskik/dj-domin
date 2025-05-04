@@ -3,11 +3,13 @@ import { SectionTitle } from "@/components/sectionTitle";
 import decki from "../../../../../public/decki-w-lesie.webp";
 import footSvg from "../../../../../public/Foot.svg";
 import { CanvasImage } from "@/components/canvasImage";
+import { Section } from "@/components/section";
+import { CircleCta } from "@/components/circleCta";
 
 export const About = () => {
   return (
-    <section className="bg-primary overflow-hidden h-screen">
-      <div className="container mx-auto flex flex-col sm:grid sm:grid-cols-2 my-[60px] md:my-[100px] xl:mb-[150px] sm:px-2 md:px-4">
+    <Section className="bg-primary min-h-svh overflow-hidden">
+      <div className="container h-full mx-auto py-10 sm:py-0 grid place-content-center sm:grid-cols-2 sm:px-2 md:px-4">
         <SectionTitle className="sm:hidden pl-2 sm:pl-0">o mnie</SectionTitle>
         <div className="order-2 sm:order-1 pl-2 sm:pl-0">
           <SectionTitle className="hidden sm:block mb-6">o mnie</SectionTitle>
@@ -19,13 +21,16 @@ export const About = () => {
             klasycznych hitów po najnowsze trendy. Moja praca to nie tylko odtwarzanie muzyki, ale też wyczucie momentu,
             energia i umiejętność rozkręcenia każdej imprezy.
           </p>
+          <div className="flex justify-end relative mt-4">
+            <CircleCta text="kontakt" />
+          </div>
         </div>
-        <div className="relative h-full order-1 sm:order-2 my-10 sm:my-0">
-          <div className="sm:absolute inset-0 top-1/8 ml-0 sm:-mr-[150px] xl:-mr-[250px] rounded-xl 2xl:rounded-2xl overflow-hidden h-52 sm:h-64 lg:h-72 xl:h-auto">
-            <CanvasImage img={decki} alt="DJ w lesie" />
+        <div className="relative sm:h-[500px] w-screen sm:w-auto order-1 sm:order-2 my-10 sm:my-0">
+          <div className="sm:absolute inset-0 top-1/8 ml-0 sm:-mr-[150px] xl:-mr-[250px] rounded-xl 2xl:rounded-2xl overflow-hidden h-52 sm:h-80 lg:h-72 xl:h-auto">
+            <CanvasImage img={decki} alt="DJ w lesie" className="h-full" />
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 };
