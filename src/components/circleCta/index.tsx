@@ -1,35 +1,28 @@
-import { motion, useAnimate } from "motion/react";
+"use client";
+import { useAnimate } from "motion/react";
+import { Props } from "./types/props";
+import { AnchorCta } from "./components/anchorCta";
+import { ButtonCta } from "./components/buttonCta";
+import { useCallback } from "react";
 
-type Props = {
-  onClick: () => void;
-  text: string;
-};
-
-export const CircleCta = ({ onClick, text }: Props) => {
+export const CircleCta = (props: Props) => {
   const [scope, animate] = useAnimate();
 
-  const setActiveStyles = () => {
+  const setActiveStyles = useCallback(() => {
+    if (!scope.current) return;
     animate("span", { fontSize: "32px" }, { ease: "easeOut", duration: 0.2 });
-    animate(scope.current, { padding: "4px", borderStyle: "dashed" }, { ease: "easeOut", duration: 0.2 });
-  };
+    animate(scope.current, { padding: "4px", outlineStyle: "dashed" }, { ease: "easeOut", duration: 0.2 });
+  }, [animate, scope]);
 
-  const resetStyles = () => {
+  const resetStyles = useCallback(() => {
+    if (!scope.current) return;
     animate("span", { fontSize: "30px" }, { ease: "easeOut" });
-    animate(scope.current, { padding: "8px", borderStyle: "solid" }, { ease: "easeOut" });
-  };
+    animate(scope.current, { padding: "8px", outlineStyle: "solid" }, { ease: "easeOut" });
+  }, [animate, scope]);
 
-  return (
-    <motion.button
-      ref={scope}
-      {...{ onClick }}
-      className="border-3 rounded-full p-2 aspect-square font-grotezk text-3xl cursor-pointer bg-white"
-      onHoverStart={setActiveStyles}
-      onHoverEnd={resetStyles}
-      onTapStart={setActiveStyles}
-      onTap={resetStyles}
-      onTapCancel={resetStyles}
-    >
-      <motion.span>{text.toUpperCase()}</motion.span>
-    </motion.button>
+  return props.variant === "anchor" ? (
+    <AnchorCta {...props} {...{ resetStyles, setActiveStyles, scope }} />
+  ) : (
+    <ButtonCta {...props} {...{ resetStyles, setActiveStyles, scope }} />
   );
 };
