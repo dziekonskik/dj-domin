@@ -1,5 +1,5 @@
 import { useRef, useEffect, useCallback } from "react";
-import { PanInfo, useAnimationFrame, useMotionValue } from "motion/react";
+import { PanInfo, useAnimationFrame, useInView, useMotionValue } from "motion/react";
 import { COLOR } from "@/consts/colors";
 import { usePlayer } from "@/components/musicPlayer/context";
 import { orZero } from "@/utils/orZero";
@@ -17,6 +17,7 @@ export const useProgressSlider = ({ setProgress }: Props) => {
   const progressLineLength = useMotionValue(0);
   const isPlaying = playerState === "playing";
   const savedIndex = useRef(activeIndex);
+  const isInView = useInView(trackRef);
 
   const handleSliderPos = useCallback(
     (x: number) => {
@@ -60,6 +61,7 @@ export const useProgressSlider = ({ setProgress }: Props) => {
   }, [isPlaying]);
 
   useAnimationFrame(() => {
+    if (!isInView) return;
     const trackRect = trackRef.current?.getBoundingClientRect();
     const ballRect = ballRef.current?.getBoundingClientRect();
     const isIdle = !isPlaying && activeIndex === savedIndex.current;

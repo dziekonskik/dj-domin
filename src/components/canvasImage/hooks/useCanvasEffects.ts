@@ -7,9 +7,10 @@ import { useAnimationFrame } from "motion/react";
 type Props = {
   canvas: HTMLCanvasElement | null;
   mousePos: MousePos;
+  isInView: boolean;
 };
 
-export const useCanvasEffects = ({ canvas, mousePos }: Props) => {
+export const useCanvasEffects = ({ canvas, mousePos, isInView }: Props) => {
   const [loadedImage, setLoadedImage] = useState<HTMLImageElement | null>(null);
   const effectRef = useRef<Effect | null>(null);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
@@ -26,6 +27,7 @@ export const useCanvasEffects = ({ canvas, mousePos }: Props) => {
   }, [loadedImage, canvas, mousePos]);
 
   useAnimationFrame(() => {
+    if (!isInView) return;
     const ctx = ctxRef.current;
     const effect = effectRef.current;
     if (!ctx || !effect) return;
