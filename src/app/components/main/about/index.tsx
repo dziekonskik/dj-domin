@@ -8,10 +8,10 @@ import { CircleCta } from "@/components/circleCta";
 
 export const About = () => {
   return (
-    <Section className="bg-primary min-h-svh overflow-hidden">
-      <div className="container h-full mx-auto py-10 sm:py-0 grid place-content-center sm:grid-cols-2 sm:px-2 md:px-4">
-        <SectionTitle className="sm:hidden pl-2 sm:pl-0">o mnie</SectionTitle>
-        <div className="order-2 sm:order-1 pl-2 sm:pl-0">
+    <Section id="about" className="bg-primary min-h-svh py-20 sm:py-0 overflow-hidden">
+      <div className="container h-full mx-auto sm:py-0 grid place-content-center sm:grid-cols-2 sm:px-2 md:px-4">
+        <SectionTitle className="sm:hidden pl-4 sm:pl-0">o mnie</SectionTitle>
+        <div className="order-2 sm:order-1 pl-4 sm:pl-0">
           <SectionTitle className="hidden sm:block mb-6">o mnie</SectionTitle>
           <p className="text-pretty xl:mt-24 w-[85%] mr-10 text-left text-sm lg:text-base">
             Jestem DJ-em specjalizującym się w imprezach okolicznościowych, gdzie moim celem jest tworzenie wyjątkowej
@@ -21,8 +21,8 @@ export const About = () => {
             klasycznych hitów po najnowsze trendy. Moja praca to nie tylko odtwarzanie muzyki, ale też wyczucie momentu,
             energia i umiejętność rozkręcenia każdej imprezy.
           </p>
-          <div className="flex justify-end relative mt-4">
-            <CircleCta text="kontakt" />
+          <div className="flex justify-end relative mt-4 mr-4">
+            <CircleCta text="kontakt" variant="anchor" />
           </div>
         </div>
         <div className="relative sm:h-[500px] w-screen sm:w-auto order-1 sm:order-2 my-10 sm:my-0">

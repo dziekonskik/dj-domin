@@ -21,7 +21,7 @@ export const ButtonCta = ({ onClick, resetStyles, setActiveStyles, text, scope }
       onTap={resetStyles}
       onTapCancel={resetStyles}
     >
-      <motion.span>{text.toUpperCase()}</motion.span>
+      <motion.span className="text-black">{text.toUpperCase()}</motion.span>
     </motion.button>
   );
 };
