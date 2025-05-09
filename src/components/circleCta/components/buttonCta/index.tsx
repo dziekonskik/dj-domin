@@ -1,19 +1,20 @@
-import { AnimationScope } from "motion";
 import { motion } from "motion/react";
 import { ButtonVariantProps } from "../../types/props";
+import { useAnimations } from "../../hooks/useAnimations";
 
 type Props = {
-  setActiveStyles: () => void;
-  resetStyles: () => void;
-  scope: AnimationScope<HTMLButtonElement>;
+  isVisible: boolean;
 };
 
-export const ButtonCta = ({ onClick, resetStyles, setActiveStyles, text, scope }: Props & ButtonVariantProps) => {
+export const ButtonCta = ({ onClick, text, isVisible }: Props & ButtonVariantProps) => {
+  const { scope, setActiveStyles, resetStyles } = useAnimations();
+
+  if (!isVisible) return null;
   return (
     <motion.button
       {...{ onClick }}
-      layoutId={text}
       ref={scope}
+      layoutId="cta"
       className="grid place-content-center outline-3 rounded-full p-2 aspect-square font-grotezk text-3xl cursor-pointer bg-white max-w-40"
       onHoverStart={setActiveStyles}
       onHoverEnd={resetStyles}

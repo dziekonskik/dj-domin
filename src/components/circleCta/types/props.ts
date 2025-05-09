@@ -1,5 +1,8 @@
+import { SectionId } from "@/consts/sections";
+
 type CommonProps = {
   text: string;
+  id: SectionId;
 };
 
 export type AnchorVariantProps = CommonProps & {
