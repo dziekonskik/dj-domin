@@ -1,26 +1,23 @@
 "use client";
-import { MEDIA_QUERY } from "@/consts/mediaQueries";
-import { useMediaQuery } from "@/hooks";
-import { motion, useScroll, useTransform } from "motion/react";
-import { ReactNode, useRef } from "react";
+import { ReactNode } from "react";
+import { motion } from "motion/react";
+import { SectionId } from "@/consts/sections";
+import { useIsClient } from "@/hooks/useIsClient";
+import { useAnimations } from "./hooks/useAnimations";
 
 type Props = {
   children: ReactNode;
   className: string;
+  id: SectionId;
 };
 
-export const Section = ({ children, className }: Props) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["end start", "start end"],
-  });
-  const isMobile = useMediaQuery(MEDIA_QUERY.IS_MOBILE);
-  const scale = useTransform(scrollYProgress, [0.1, 0.5, 0.9], [0.9, 1, 0.9]);
+export const Section = ({ children, className, id }: Props) => {
+  const isClient = useIsClient();
+  const { ref, isMobile, scale } = useAnimations({ id });
 
   return (
-    <section {...{ className }}>
-      <motion.div {...{ ref }} style={{ scale: isMobile ? 1 : scale }} className="w-full h-full">
+    <section {...{ className, id }}>
+      <motion.div {...{ ref }} style={{ scale: isClient && !isMobile ? scale : 1 }} className="w-full h-full">
         {children}
       </motion.div>
     </section>
