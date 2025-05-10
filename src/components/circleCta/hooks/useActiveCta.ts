@@ -9,12 +9,12 @@ type Props = {
 
 export const useActiveCta = ({ id }: Props) => {
   const positionRef = useRef<HTMLDivElement>(null);
-  const { setActiveCta, activeCtaId } = useUIContext();
+  const { setActiveSectionId, activeSection } = useUIContext();
   const isInView = useInView(positionRef, { amount: 0.1 });
 
   useEffect(() => {
-    if (isInView) setActiveCta(id);
-  }, [id, isInView, setActiveCta, activeCtaId]);
+    if (isInView) setActiveSectionId(id);
+  }, [id, isInView, setActiveSectionId, activeSection]);
 
-  return { positionRef, isVisible: activeCtaId === id };
+  return { positionRef, isVisible: activeSection === id };
 };

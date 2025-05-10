@@ -6,10 +6,10 @@ import { SectionId, SECTION_ID } from "@/consts/sections";
 const UiStateContext = createContext<UIState | null>(null);
 
 export const UIStateProvider = ({ children }: PropsWithChildren) => {
-  const [activeCtaId, setActiveCtaId] = useState<SectionId>(SECTION_ID.HERO);
+  const [activeSection, setActiveSection] = useState<SectionId>(SECTION_ID.HERO);
   const bodyScrollLockRef = useRef(false);
 
-  console.log({ activeCtaId });
+  console.log({ activeCtaId: activeSection });
 
   const isBodyScrollLocked = useCallback(() => bodyScrollLockRef.current, []);
   const setBodyScrollLocked = useCallback(() => {
@@ -19,13 +19,19 @@ export const UIStateProvider = ({ children }: PropsWithChildren) => {
     bodyScrollLockRef.current = false;
   }, []);
 
-  const setActiveCta = useCallback((id: SectionId) => {
-    setActiveCtaId(id);
+  const setActiveSectionId = useCallback((id: SectionId) => {
+    setActiveSection(id);
   }, []);
 
   return (
     <UiStateContext
-      value={{ isBodyScrollLocked, setBodyScrollLocked, setBodyScrollUnlocked, activeCtaId, setActiveCta }}
+      value={{
+        isBodyScrollLocked,
+        setBodyScrollLocked,
+        setBodyScrollUnlocked,
+        activeSection,
+        setActiveSectionId,
+      }}
     >
       {children}
     </UiStateContext>

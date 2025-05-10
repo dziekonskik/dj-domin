@@ -10,7 +10,7 @@ type Props = {
 };
 
 export const useAnimations = ({ id }: Props) => {
-  const { setActiveCta } = useUIContext();
+  const { setActiveSectionId } = useUIContext();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -21,8 +21,8 @@ export const useAnimations = ({ id }: Props) => {
   const scale = useTransform(scrollYProgress, [0.1, 0.5, 0.9], [0.9, 1, 0.9]);
 
   useEffect(() => {
-    if (isInView) setActiveCta(id);
-  }, [id, isInView, setActiveCta]);
+    if (isInView) setActiveSectionId(id);
+  }, [id, isInView, setActiveSectionId]);
 
   return { ref, scale, isMobile };
 };

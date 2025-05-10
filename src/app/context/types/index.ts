@@ -4,6 +4,6 @@ export type UIState = {
   isBodyScrollLocked: () => boolean;
   setBodyScrollLocked: () => void;
   setBodyScrollUnlocked: () => void;
-  setActiveCta: (id: SectionId) => void;
-  activeCtaId: SectionId;
+  setActiveSectionId: (id: SectionId) => void;
+  activeSection: SectionId;
 };
