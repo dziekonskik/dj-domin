@@ -20,7 +20,7 @@ export const Hero = () => {
           </div>
           <div className="w-full flex flex-col sm:flex-row items-end justify-between z-0 sm:bg-white pt-2">
             <div className="flex-1 flex justify-start md:justify-center sm:mb-40 mb-2 mr-14 md:mr-0">
-              <CircleCta text="kontakt" variant="anchor" id="hero" />
+              <CircleCta text="kontakt" variant="anchor" id="hero" layoutId="contactBtn" />
             </div>
             <div className="w-full sm:w-auto flex justify-end">
               <MusicPlayer />

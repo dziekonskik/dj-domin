@@ -4,7 +4,7 @@ import { useInView } from "motion/react";
 import { useEffect, useRef } from "react";
 
 type Props = {
-  id: SectionId;
+  id?: SectionId;
 };
 
 export const useActiveCta = ({ id }: Props) => {
@@ -13,6 +13,7 @@ export const useActiveCta = ({ id }: Props) => {
   const isInView = useInView(positionRef, { amount: 0.1 });
 
   useEffect(() => {
+    if (!id) return;
     if (isInView) setActiveSectionId(id);
   }, [id, isInView, setActiveSectionId, activeSection]);
 

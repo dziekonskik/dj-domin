@@ -2,11 +2,13 @@ import { SectionId } from "@/consts/sections";
 
 type CommonProps = {
   text: string;
-  id: SectionId;
+  layoutId?: string;
+  id?: SectionId;
 };
 
 export type AnchorVariantProps = CommonProps & {
   variant: "anchor";
+  id: SectionId;
 };
 export type ButtonVariantProps = CommonProps & {
   variant: "button";
