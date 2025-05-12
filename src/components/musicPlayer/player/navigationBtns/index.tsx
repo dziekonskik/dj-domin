@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { IconButton } from "@/components/iconButton";
-import arrowRight from "../../../../../public/arrow-right.svg";
-import arrowLeft from "../../../../../public/arrow-left.svg";
+import arrowRight from "public/arrow-right.svg";
+import arrowLeft from "public/arrow-left.svg";
 import { memo } from "react";
 
 type Props = {

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { motion } from "motion/react";
 import { TrackData } from "../../context";
-import SzewcuLogo from "../../../../../public/djszewcu-green.svg";
+import SzewcuLogo from "public/djszewcu-green.svg";
 import { PlayPause } from "../controlPanel/components/playPause";
 import { memo } from "react";
 

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { SectionTitle } from "@/components/sectionTitle";
-import decki from "../../../../../public/decki-w-lesie.webp";
-import footSvg from "../../../../../public/Foot.svg";
+import decki from "public/decki-w-lesie.webp";
+import footSvg from "public/Foot.svg";
 import { CanvasImage } from "@/components/canvasImage";
 import { Section } from "@/components/section";
 import { CircleCta } from "@/components/circleCta";

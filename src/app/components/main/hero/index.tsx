@@ -1,4 +1,4 @@
-import img from "../../../../../public/domin.webp";
+import img from "public/domin.webp";
 import { MusicPlayer } from "@/components/musicPlayer";
 import { CanvasImage } from "@/components/canvasImage";
 import { CircleCta } from "@/components/circleCta";
