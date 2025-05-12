@@ -12,8 +12,8 @@ type Props = {
 
 export const NavigationBtns = memo(({ displayNumber, prev, next }: Props) => {
   return (
-    <div className="w-full flex gap-4 sm:justify-end items-center">
-      <IconButton content={arrowLeft} onClick={prev} />
+    <div className="w-full flex gap-4 sm:justify-end items-center h-12">
+      <IconButton icon={arrowLeft} onClick={prev} />
       <motion.span
         initial={{ scale: 1.2 }}
         animate={{ scale: 1 }}
@@ -22,7 +22,7 @@ export const NavigationBtns = memo(({ displayNumber, prev, next }: Props) => {
       >
         {displayNumber}
       </motion.span>
-      <IconButton content={arrowRight} onClick={next} />
+      <IconButton icon={arrowRight} onClick={next} />
     </div>
   );
 });
