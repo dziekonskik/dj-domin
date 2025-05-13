@@ -1,5 +1,5 @@
 import { createContext, ReactNode, use } from "react";
-import { useBindedReducer } from "@type-hub/re-action";
+import { useBoundReducer } from "@type-hub/re-action";
 import { initState } from "./state/initialState";
 import { reducer } from "./state/reducer";
 import { actionCreators } from "./actions/actionCreators";
@@ -14,7 +14,7 @@ type Props = {
 };
 
 export const PlayerStoreProvider = ({ children, tracks }: Props) => {
-  const [state, actions] = useBindedReducer(reducer, actionCreators, { ...initState, tracks });
+  const [state, actions] = useBoundReducer(reducer, actionCreators, { ...initState, tracks });
   const controls = usePlayerControls(state, actions);
 
   return <PlayerContext value={{ ...state, ...controls }}>{children}</PlayerContext>;

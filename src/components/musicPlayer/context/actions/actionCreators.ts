@@ -1,7 +1,7 @@
-import { setupActionsCreators } from "@type-hub/re-action";
+import { createActionCreators } from "@type-hub/re-action";
 import { PlayerState } from "../types/state";
 
-export const actionCreators = setupActionsCreators({
+export const actionCreators = createActionCreators({
   setWorkingState: (newState: Exclude<PlayerState, "error">) => newState,
   setErrorState: (_, error) => {
     throw new Error(`Player error: ${error}`);
