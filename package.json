@@ -24,6 +24,7 @@
     "@tailwindcss/postcss": "^4.1.6",
     "@types/howler": "^2.2.12",
     "@types/node": "^22",
+    "@types/nodemailer": "^6.4.17",
     "@types/ramda": "^0.30.2",
     "@types/react": "^19",
     "@types/react-dom": "^19",
