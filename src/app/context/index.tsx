@@ -9,8 +9,6 @@ export const UIStateProvider = ({ children }: PropsWithChildren) => {
   const [activeSection, setActiveSection] = useState<SectionId>(SECTION_ID.HERO);
   const bodyScrollLockRef = useRef(false);
 
-  console.log({ activeCtaId: activeSection });
-
   const isBodyScrollLocked = useCallback(() => bodyScrollLockRef.current, []);
   const setBodyScrollLocked = useCallback(() => {
     bodyScrollLockRef.current = true;
