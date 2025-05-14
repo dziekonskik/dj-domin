@@ -6,7 +6,7 @@ type Props = {
   isVisible: boolean;
 };
 
-export const AnchorCta = ({ text, isVisible, href, layoutId }: Props & AnchorVariantProps) => {
+export const AnchorCta = ({ children, isVisible, href, layoutId }: Props & AnchorVariantProps) => {
   const { ref, setActiveStyles, resetStyles } = useAnimations();
 
   if (!isVisible) return null;
@@ -21,7 +21,7 @@ export const AnchorCta = ({ text, isVisible, href, layoutId }: Props & AnchorVar
       onTap={resetStyles}
       onTapCancel={resetStyles}
     >
-      <motion.span>{text.toUpperCase()}</motion.span>
+      <motion.div>{children}</motion.div>
     </motion.a>
   );
 };

@@ -1,7 +1,8 @@
 import { SectionId } from "@/consts/sections";
+import { ReactNode } from "react";
 
 type CommonProps = {
-  text: string;
+  children: ReactNode;
   layoutId?: string;
   id?: SectionId;
 };
