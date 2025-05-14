@@ -8,11 +8,11 @@ type CommonProps = {
 
 export type AnchorVariantProps = CommonProps & {
   variant: "anchor";
-  id: SectionId;
+  href: SectionId;
 };
 export type ButtonVariantProps = CommonProps & {
   variant: "button";
-  onClick: () => void;
+  onClick: (() => void) | undefined;
 };
 
 export type Props = AnchorVariantProps | ButtonVariantProps;

@@ -6,14 +6,14 @@ type Props = {
   isVisible: boolean;
 };
 
-export const AnchorCta = ({ text, isVisible, id, layoutId }: Props & AnchorVariantProps) => {
+export const AnchorCta = ({ text, isVisible, href, layoutId }: Props & AnchorVariantProps) => {
   const { ref, setActiveStyles, resetStyles } = useAnimations();
 
   if (!isVisible) return null;
   return (
     <motion.a
       {...{ ref, layoutId }}
-      href={`#${id}`}
+      href={`#${href}`}
       className="grid place-content-center outline-3 rounded-full p-2 aspect-square font-grotezk text-3xl cursor-pointer bg-white max-w-40"
       onHoverStart={setActiveStyles}
       onHoverEnd={resetStyles}
