@@ -1,15 +1,14 @@
 "use client";
-import { useActionState } from "react";
 import { useSetActiveSection } from "./hooks/useSetActiveSection";
 import { SubmitButton } from "./components/submitButton";
-import { submit } from "./actions/submit";
+import { useSubmit } from "./hooks/useSubmit";
 
 export const ContactForm = () => {
   const ref = useSetActiveSection();
-  const [formState, action] = useActionState(submit, null);
+  const { onSubmit, formStatus } = useSubmit(ref);
 
   return (
-    <form {...{ ref, action }} className="flex flex-col gap-10 justify-center flex-1 p-4 relative lg:p-6">
+    <form {...{ ref, onSubmit }} className="flex flex-col gap-10 justify-center flex-1 p-4 relative lg:p-6">
       <input
         required
         name="name"
@@ -35,10 +34,8 @@ export const ContactForm = () => {
         cols={20}
         className="p-2 border-2 border-white rounded-sm relative"
       ></textarea>
-      <div className="flex justify-end -mt-24">
-        <div className="scale-75 w-auto -mr-6 flex h-32">
-          <SubmitButton {...{ formState }} />
-        </div>
+      <div className="flex justify-end -mt-24 z-10 h-28">
+        <SubmitButton {...{ formStatus }} />
       </div>
     </form>
   );
