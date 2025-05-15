@@ -6,7 +6,7 @@ type Props = {
   isVisible: boolean;
 };
 
-export const AnchorCta = ({ children, isVisible, href, layoutId }: Props & AnchorVariantProps) => {
+export const AnchorCta = ({ children, isVisible, href, layoutId, className }: Props & AnchorVariantProps) => {
   const { ref, setActiveStyles, resetStyles } = useAnimations();
 
   if (!isVisible) return null;
@@ -21,7 +21,7 @@ export const AnchorCta = ({ children, isVisible, href, layoutId }: Props & Ancho
       onTap={resetStyles}
       onTapCancel={resetStyles}
     >
-      <motion.div>{children}</motion.div>
+      <motion.div {...{ className }}>{children}</motion.div>
     </motion.a>
   );
 };

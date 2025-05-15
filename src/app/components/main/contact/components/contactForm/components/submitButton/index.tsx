@@ -30,13 +30,12 @@ export const SubmitButton = ({ formStatus }: Props) => {
       text: "",
     }));
 
-  console.log({ key });
   return (
     <CircleCta
       variant="button"
       type="submit"
       id="contact"
-      disabled={formStatus === "pending"}
+      disabled={formStatus !== "idle"}
       onClick={undefined}
       layoutId="contactBtn"
       className="relative w-28 rounded-full aspect-square"

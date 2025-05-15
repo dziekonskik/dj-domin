@@ -5,6 +5,7 @@ type CommonProps = {
   children: ReactNode;
   layoutId?: string;
   id?: SectionId;
+  className?: string;
 };
 
 export type AnchorVariantProps = CommonProps & {
@@ -14,6 +15,8 @@ export type AnchorVariantProps = CommonProps & {
 export type ButtonVariantProps = CommonProps & {
   variant: "button";
   onClick: (() => void) | undefined;
+  type?: HTMLButtonElement["type"];
+  disabled?: HTMLButtonElement["disabled"];
 };
 
 export type Props = AnchorVariantProps | ButtonVariantProps;
