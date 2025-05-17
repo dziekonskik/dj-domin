@@ -4,10 +4,10 @@ import telephone from "public/Phone-icon.svg";
 import messenger from "public/Messenger.svg";
 import whatsapp from "public/WhatsApp.svg";
 import contact from "public/contact.svg";
-import { useSocialClicks } from "./hooks/useSocialClicks";
+import { useSocialMedia } from "./hooks/useSocialMedia";
 
 export const SocialMedia = () => {
-  const { handlePhoneClick, handleMessengerClick, handleWhatsappClick } = useSocialClicks();
+  const { handlePhoneClick, handleMessengerClick, handleWhatsappClick } = useSocialMedia();
 
   return (
     <div className="flex-1 flex justify-between mb-10 p-4 pt-0 lg:p-6 lg:flex-col">
