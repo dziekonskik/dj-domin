@@ -1,4 +1,4 @@
-import { GetActionTypes, CreateBindedActions } from "@type-hub/re-action";
+import { GetActionTypes, CreateBoundActions } from "@type-hub/re-action";
 import { actionCreators, usePlayerControls } from "../actions";
 
 export type TrackData = {
@@ -17,5 +17,5 @@ export type State = {
 };
 
 export type Actions = GetActionTypes<typeof actionCreators>;
-export type ActionCreators = CreateBindedActions<typeof actionCreators>;
+export type ActionCreators = CreateBoundActions<typeof actionCreators>;
 export type ContextValues = State & ReturnType<typeof usePlayerControls>;
