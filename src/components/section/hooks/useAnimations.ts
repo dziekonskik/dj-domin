@@ -18,7 +18,7 @@ export const useAnimations = ({ id }: Props) => {
   });
   const isMobile = useMediaQuery(MEDIA_QUERY.IS_MOBILE);
   const isInView = useInView(ref, { amount: isMobile ? 1 : 0.75 });
-  const scale = useTransform(scrollYProgress, [0.1, 0.5, 0.9], [0.9, 1, 0.9]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1, 0.95]);
 
   useEffect(() => {
     if (isInView) setActiveSectionId(id);
