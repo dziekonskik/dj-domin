@@ -22,7 +22,7 @@ export const PianoDecoration = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  if (!isClient) return null;
+  if (!isClient) return <svg height="100" />;
   return (
     <motion.svg
       variants={svgContainerVariants}

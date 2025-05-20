@@ -8,7 +8,7 @@ import { useSocialMedia } from "./hooks/useSocialMedia";
 export const ContactDetails = () => {
   const { handleFacobookClick, handleInstagramClick, handleSoundCloudClick } = useSocialMedia();
   return (
-    <article>
+    <article className="px-4">
       <div className="flex gap-6">
         <IconButton icon={facebook} onClick={handleFacobookClick} />
         <IconButton icon={instagram} onClick={handleInstagramClick} />
