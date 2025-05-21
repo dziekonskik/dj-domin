@@ -1,6 +1,8 @@
+"use client";
 import { motion } from "motion/react";
 import type { AnchorVariantProps } from "../../types/props";
 import { useAnimations } from "../../hooks/useAnimations";
+import { ctaClassnames } from "../../consts/classnames";
 
 type Props = {
   isVisible: boolean;
@@ -12,9 +14,8 @@ export const AnchorCta = ({ children, isVisible, href, layoutId, className }: Pr
   if (!isVisible) return null;
   return (
     <motion.a
-      {...{ ref, layoutId }}
-      href={`#${href}`}
-      className="grid place-content-center outline-3 rounded-full p-2 aspect-square font-grotezk text-3xl cursor-pointer bg-white max-w-40"
+      {...{ ref, layoutId, href }}
+      className={ctaClassnames}
       onHoverStart={setActiveStyles}
       onHoverEnd={resetStyles}
       onTapStart={setActiveStyles}

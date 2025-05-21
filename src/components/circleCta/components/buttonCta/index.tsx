@@ -1,6 +1,8 @@
+"use client";
 import { motion } from "motion/react";
 import { ButtonVariantProps } from "../../types/props";
 import { useAnimations } from "../../hooks/useAnimations";
+import { ctaClassnames } from "../../consts/classnames";
 
 type Props = {
   isVisible: boolean;
@@ -21,7 +23,7 @@ export const ButtonCta = ({
   return (
     <motion.button
       {...{ onClick, ref, layoutId, type, disabled }}
-      className="grid place-content-center outline-3 rounded-full p-2 aspect-square font-grotezk text-3xl cursor-pointer bg-white max-w-40 text-black"
+      className={ctaClassnames}
       onHoverStart={setActiveStyles}
       onHoverEnd={resetStyles}
       onTapStart={setActiveStyles}
