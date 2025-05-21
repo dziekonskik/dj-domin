@@ -11,6 +11,7 @@ type CommonProps = {
 export type AnchorVariantProps = CommonProps & {
   variant: "anchor";
   href: string;
+  target?: HTMLAnchorElement["target"];
 };
 export type ButtonVariantProps = CommonProps & {
   variant: "button";

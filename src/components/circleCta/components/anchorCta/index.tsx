@@ -8,13 +8,13 @@ type Props = {
   isVisible: boolean;
 };
 
-export const AnchorCta = ({ children, isVisible, href, layoutId, className }: Props & AnchorVariantProps) => {
+export const AnchorCta = ({ children, isVisible, href, layoutId, className, target }: Props & AnchorVariantProps) => {
   const { ref, setActiveStyles, resetStyles } = useAnimations();
 
   if (!isVisible) return null;
   return (
     <motion.a
-      {...{ ref, layoutId, href }}
+      {...{ ref, layoutId, href, target }}
       className={ctaClassnames}
       onHoverStart={setActiveStyles}
       onHoverEnd={resetStyles}
