@@ -22,7 +22,7 @@ export const About = () => {
             energia i umiejętność rozkręcenia każdej imprezy.
           </p>
           <div className="flex justify-end relative mt-4 mr-4">
-            <CircleCta variant="anchor" id="about" href="contact" layoutId="contactBtn">
+            <CircleCta variant="anchor" id="about" href="#contact" layoutId="contactBtn">
               KONTAKT
             </CircleCta>
           </div>

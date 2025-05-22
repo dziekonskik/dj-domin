@@ -11,7 +11,7 @@ export const Contact = () => {
     <Section id="contact" className="min-h-svh py-20 lg:py-40 overflow-hidden">
       <div className="container mx-auto">
         <SectionTitle className="pl-4 sm:pl-0">kontakt</SectionTitle>
-        <h5 className="mt-10 mb-20 px-4 text-pretty">
+        <h5 className="mt-10 mb-20 px-4 sm:px-0 text-pretty">
           Z przyjemnością zagram na Twojej imprezie :) Zostaw wiadomość a oddzwonię, lub pisz bezpośrednio na socialach.
         </h5>
         <article className="lg:flex w-full lg:h-[550px] xl:h-[600px] lg:items-center overflow-hidden">
