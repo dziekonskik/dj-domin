@@ -1,3 +1,4 @@
+"use client";
 import dynamic from "next/dynamic";
 import { VolumeButton } from "./components/volumeButton";
 import { useVolumeControls } from "./hooks/useVolumeControls";

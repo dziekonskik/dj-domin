@@ -1,3 +1,4 @@
+"use client";
 import { usePlayer } from "../../context";
 import { NavigationBtns } from "../navigationBtns";
 import { Track } from "../track";

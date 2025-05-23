@@ -1,3 +1,4 @@
+"use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { usePlayer } from "@/components/musicPlayer/context";
 import { useAnimationControls } from "motion/react";

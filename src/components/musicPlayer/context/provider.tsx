@@ -1,3 +1,4 @@
+"use client";
 import { createContext, ReactNode, use } from "react";
 import { useBoundReducer } from "@type-hub/re-action";
 import { initState } from "./state/initialState";

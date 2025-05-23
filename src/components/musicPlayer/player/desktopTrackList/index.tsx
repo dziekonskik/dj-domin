@@ -1,3 +1,4 @@
+"use client";
 import { AnimatePresence, motion } from "motion/react";
 import { usePlayer } from "../../context";
 import { Track } from "../track";

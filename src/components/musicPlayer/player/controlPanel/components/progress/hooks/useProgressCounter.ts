@@ -1,3 +1,4 @@
+"use client";
 import { useCallback, useState } from "react";
 import { useAnimationFrame } from "framer-motion";
 import { usePlayer } from "@/components/musicPlayer/context";

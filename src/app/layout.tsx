@@ -4,11 +4,14 @@ import { Footer } from "./components/footer";
 import { apfelGrotezk, poppins } from "./styles/fonts";
 import "./styles/globals.css";
 import { UIStateProvider } from "./context";
+import { PlayerStoreProvider } from "@/components/musicPlayer/context";
+import { getMusic } from "@/components/musicPlayer/utils/getMusic";
 
 export const metadata: Metadata = {
   title: "Dj Domin",
   description: "Najlepszy dj w mieście",
 };
+const tracks = await getMusic();
 
 export default function RootLayout({
   children,
@@ -19,9 +22,11 @@ export default function RootLayout({
     <html lang="pl" className="scroll-smooth">
       <body className={`${poppins.variable} ${apfelGrotezk.variable} font-poppins antialiased`}>
         <UIStateProvider>
-          <Header />
-          {children}
-          <Footer />
+          <PlayerStoreProvider {...{ tracks }}>
+            <Header />
+            {children}
+            <Footer />
+          </PlayerStoreProvider>
         </UIStateProvider>
       </body>
     </html>

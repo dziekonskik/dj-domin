@@ -1,3 +1,4 @@
+"use client";
 import { useRef, useEffect, useCallback } from "react";
 import { PanInfo, useAnimationFrame, useInView, useMotionValue } from "motion/react";
 import { COLOR } from "@/consts/colors";

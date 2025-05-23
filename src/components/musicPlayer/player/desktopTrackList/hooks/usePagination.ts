@@ -1,3 +1,4 @@
+"use client";
 import { usePlayer } from "@/components/musicPlayer/context";
 import { splitEvery } from "ramda";
 import { useCallback, useEffect } from "react";

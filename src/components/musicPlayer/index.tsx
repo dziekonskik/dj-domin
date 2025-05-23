@@ -1,14 +1,11 @@
 import { Suspense } from "react";
 import { Player } from "./player";
 import { PlayerLoading } from "./player/loading";
-import { getMusic } from "./utils/getMusic";
 
-export async function MusicPlayer() {
-  const tracksPromise = getMusic();
-
+export function MusicPlayer() {
   return (
     <Suspense fallback={<PlayerLoading />}>
-      <Player {...{ tracksPromise }} />
+      <Player />
     </Suspense>
   );
 }

@@ -15,7 +15,6 @@ export const PianoDecoration = () => {
   useEffect(() => {
     const handleResize = () => {
       setPianoCount(window.innerWidth / RECT_WIDTH);
-      console.log(window.innerWidth);
     };
 
     window.addEventListener("resize", handleResize);
