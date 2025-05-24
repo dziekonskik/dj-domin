@@ -2,12 +2,14 @@
 import { createContext, PropsWithChildren, use, useCallback, useRef, useState } from "react";
 import { UIState } from "./types";
 import { SectionId, SECTION_ID } from "@/consts/sections";
+import { useAnimationControls } from "motion/react";
 
 const UiStateContext = createContext<UIState | null>(null);
 
 export const UIStateProvider = ({ children }: PropsWithChildren) => {
   const [activeSection, setActiveSection] = useState<SectionId>(SECTION_ID.HERO);
   const bodyScrollLockRef = useRef(false);
+  const headerAnimationControls = useAnimationControls();
 
   const isBodyScrollLocked = useCallback(() => bodyScrollLockRef.current, []);
   const setBodyScrollLocked = useCallback(() => {
@@ -29,6 +31,7 @@ export const UIStateProvider = ({ children }: PropsWithChildren) => {
         setBodyScrollUnlocked,
         activeSection,
         setActiveSectionId,
+        headerAnimationControls,
       }}
     >
       {children}

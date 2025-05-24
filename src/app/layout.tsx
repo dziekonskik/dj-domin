@@ -5,6 +5,7 @@ import { apfelGrotezk, poppins } from "./styles/fonts";
 import "./styles/globals.css";
 import { UIStateProvider } from "./context";
 import { PlayerStoreProvider } from "@/components/musicPlayer/context";
+import { RefsProvider } from "./components/header/components/navigation/context";
 import { getMusic } from "@/components/musicPlayer/utils/getMusic";
 
 export const metadata: Metadata = {
@@ -22,11 +23,13 @@ export default function RootLayout({
     <html lang="pl" className="scroll-smooth">
       <body className={`${poppins.variable} ${apfelGrotezk.variable} font-poppins antialiased`}>
         <UIStateProvider>
-          <PlayerStoreProvider {...{ tracks }}>
-            <Header />
-            {children}
-            <Footer />
-          </PlayerStoreProvider>
+          <RefsProvider>
+            <PlayerStoreProvider {...{ tracks }}>
+              <Header />
+              {children}
+              <Footer />
+            </PlayerStoreProvider>
+          </RefsProvider>
         </UIStateProvider>
       </body>
     </html>

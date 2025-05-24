@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { frame, cancelFrame } from "motion";
 import { AnimationControls } from "motion/react";
 import { useRefsContext } from "../../context";
-import { orZero } from "@/utils/orZero";
+import { MEDIA_QUERY } from "@/consts/mediaQueries";
+import { useMediaQuery } from "@/hooks";
 
 type Props = {
   controls: AnimationControls;
@@ -11,15 +12,15 @@ type Props = {
 
 export const useInitialize = ({ controls, getMotionDivRect }: Props) => {
   const { getCurrentLinkRect } = useRefsContext();
+  const isMobile = useMediaQuery(MEDIA_QUERY.IS_MOBILE);
 
   useEffect(() => {
     const currentLinkRect = getCurrentLinkRect();
-    const motionDivRect = getMotionDivRect();
 
     if (!currentLinkRect?.height) return;
     controls.set({
       x: currentLinkRect.x,
-      y: currentLinkRect.y + orZero(motionDivRect?.height) / 2,
+      y: isMobile ? currentLinkRect.y : 40,
     });
 
     const initialize = () => {

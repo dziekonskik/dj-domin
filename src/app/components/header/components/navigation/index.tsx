@@ -1,12 +1,10 @@
 "use client";
-
 import { motion, useScroll, useTransform } from "motion/react";
-import { NavAnimation } from "./navAnimation";
 import { routes } from "@/consts/routes";
-import { NavigationLink } from "./navigationLink";
-import { RefsProfider } from "./context";
 import { MEDIA_QUERY } from "@/consts/mediaQueries";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { NavAnimation } from "./navAnimation";
+import { NavigationLink } from "./navigationLink";
 import { LIST_VARIANTS } from "./consts/motionVariants";
 import { useListAnimationActions } from "./hooks/useListAnimationActions";
 
@@ -22,7 +20,7 @@ export const Navigation = ({ isMenuOpen, closeMobileMenu }: Props) => {
   const isMobileMenuOpen = isMobile && isMenuOpen;
 
   return (
-    <RefsProfider>
+    <>
       <motion.div
         className="fixed top-10 right-5 bg-white w-10 h-10 -z-10 rounded-full"
         initial={{ scale: 0 }}
@@ -47,6 +45,6 @@ export const Navigation = ({ isMenuOpen, closeMobileMenu }: Props) => {
         </motion.ul>
         <NavAnimation />
       </nav>
-    </RefsProfider>
+    </>
   );
 };
