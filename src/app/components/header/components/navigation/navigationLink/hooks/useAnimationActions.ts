@@ -2,6 +2,7 @@ import { useRef, useEffect, useCallback, MouseEvent } from "react";
 import { Route } from "@/consts/routes";
 import { useBodyScrollLock } from "@/hooks";
 import { useRefsContext } from "../../context";
+import { useRouter } from "next/navigation";
 
 type Props = {
   href: Route;
@@ -11,6 +12,7 @@ type Props = {
 export const useAnimationActions = ({ href, closeMobileMenu }: Props) => {
   const liRef = useRef<HTMLLIElement>(null);
   const mousePosition = useRef({ x: 0, y: 0 });
+  const router = useRouter();
   const { animationRef, setNewMotionDivPosition, navLinksRef } = useRefsContext();
   const { unlockScroll } = useBodyScrollLock();
 
@@ -31,10 +33,11 @@ export const useAnimationActions = ({ href, closeMobileMenu }: Props) => {
 
   useEffect(() => {
     if (liRef.current && navLinksRef) {
+      router.prefetch(href);
       const getBoundingRect = () => liRef.current?.getBoundingClientRect();
       navLinksRef.current[href] = { getBoundingRect };
     }
-  }, [href, liRef, navLinksRef]);
+  }, [href, liRef, navLinksRef, router]);
 
   return { liRef, onClick, onMouseMove };
 };

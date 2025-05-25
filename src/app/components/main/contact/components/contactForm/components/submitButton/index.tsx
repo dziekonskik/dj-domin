@@ -19,7 +19,7 @@ export const SubmitButton = ({ formStatus }: Props) => {
     }))
     .with("success", () => ({
       key: "success",
-      text: "POSZŁO! :)",
+      text: "POSZŁO!",
     }))
     .with("idle", () => ({
       key: "default",

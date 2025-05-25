@@ -9,9 +9,7 @@ export async function POST(req: Request) {
 
   try {
     const transporter = nodemailer.createTransport({
-      host: "poczta.int.pl",
-      port: 465,
-      secure: true,
+      service: "gmail",
       auth: {
         user: process.env.SMTP_USER?.trim(),
         pass: process.env.SMTP_PASS?.trim(),

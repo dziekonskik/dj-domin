@@ -5,17 +5,17 @@ import { HeroCta } from "../heroCta";
 
 export const AboutHero = () => {
   return (
-    <Section id="hero" className="w-full overflow-hidden sm:px-4 sm:py-8">
+    <Section id="hero" className="w-full overflow-hidden sm:px-4 sm:py-8 lg:p-0">
       <div className="lg:h-full sm:flex w-full lg:container mx-auto gap-6">
         <div className="sm:flex-1">
-          <div className="relative aspect-square sm:w-full sm:h-84 lg:h-auto sm:rounded-md overflow-hidden md:rounded-xl">
+          <div className="relative aspect-square sm:w-full sm:h-84 lg:h-auto sm:rounded-md overflow-hidden md:rounded-xl md:scale-95">
             <CanvasImage {...{ img, alt: "Dj domin" }} className="scale-x-115 sm:scale-x-100 w-full h-full sm:h-auto" />
           </div>
           <div className="lg:hidden -mt-20 sm:mt-0 scale-80">
             <HeroCta />
           </div>
         </div>
-        <div className="flex-1 z-10 flex flex-col gap-6 mb-10 sm:mb-0 px-4 sm:px-0">
+        <div className="flex-1 z-10 flex flex-col gap-6 mb-10 sm:mb-0 px-4 sm:px-0 sm:pt-10">
           <p>
             Jestem DJ-em specjalizującym się w imprezach okolicznościowych, gdzie moim celem jest tworzenie wyjątkowej
             atmosfery i zapewnienie niezapomnianych wrażeń muzycznych. Niezależnie od tego, czy to wesela, urodziny, czy
