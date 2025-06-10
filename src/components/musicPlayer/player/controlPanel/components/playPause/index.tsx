@@ -50,7 +50,7 @@ export const PlayPause = memo(({ isLoading, isPlaying, togglePlay }: Props) => {
         <motion.path
           variants={variantsLeftPath}
           initial="pause"
-          animate={isPlaying ? "play" : "pause"}
+          animate={isPlaying ? "pause" : "play"}
           {...PATH_CONFIG}
           stroke="white"
           fill="white"
@@ -58,7 +58,7 @@ export const PlayPause = memo(({ isLoading, isPlaying, togglePlay }: Props) => {
         <motion.path
           variants={variantsRightPath}
           initial="pause"
-          animate={isPlaying ? "play" : "pause"}
+          animate={isPlaying ? "pause" : "play"}
           {...PATH_CONFIG}
           stroke="white"
           fill="white"
