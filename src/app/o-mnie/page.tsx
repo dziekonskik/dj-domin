@@ -1,4 +1,7 @@
+import { aboutMetadata } from "@/consts/metadata";
 import { AboutHero } from "./components/hero";
+
+export const metadata = aboutMetadata;
 
 export default function Omnie() {
   return (

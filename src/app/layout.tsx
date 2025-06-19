@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Header } from "./components/header";
 import { Footer } from "./components/footer";
 import { apfelGrotezk, poppins } from "./styles/fonts";
@@ -7,12 +6,10 @@ import { UIStateProvider } from "./context";
 import { PlayerStoreProvider } from "@/components/musicPlayer/context";
 import { RefsProvider } from "./components/header/components/navigation/context";
 import { getMusic } from "@/components/musicPlayer/utils/getMusic";
+import { commonMetadata } from "@/consts/metadata";
 
-export const metadata: Metadata = {
-  title: "Dj Domin",
-  description: "Najlepszy dj w mieście",
-};
 const tracks = await getMusic();
+export const metadata = commonMetadata;
 
 export default function RootLayout({
   children,
